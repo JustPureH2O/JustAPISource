@@ -1,0 +1,16 @@
+{
+  "name": "ba-memory",
+  "version": "1.0.0",
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "howler": "^2.2.4",
+    "pixi-spine": "^4.0.4",
+    "pixi.js": "^7.3.2",
+    "requirejs": "^2.3.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JustPureH2O/JustAPI"
+  },
+  "private": true
+}
