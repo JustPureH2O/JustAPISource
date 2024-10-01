@@ -37,23 +37,19 @@ class Player {
             noRepeat: false,
             animation: 'idle_01',
             ratio: 1080 / 1920,
+            fixed: false
         }
-        if (options.get('width')) this.options['width'] = options.get('width');
-        if (options.get('ratio')) this.options['ratio'] = options.get('ratio');
-        if (options.get('mute')) this.options['mute'] = options.get('mute');
-        if (options.get('noRepeat')) this.options['noRepeat'] = options.get('noRepeat');
-        if (options.get('animation')) this.options['animation'] = options.get('animation');
+        if (options.get('fixed') !== null) this.options['fixed'] = true;
+        if (options.get('width') !== null) this.options['width'] = options.get('width');
+        if (options.get('ratio') !== null) this.options['ratio'] = options.get('ratio');
+        if (options.get('mute') !== null) this.options['mute'] = options.get('mute');
+        if (options.get('noRepeat') !== null) this.options['noRepeat'] = options.get('noRepeat');
+        if (options.get('animation') !== null) this.options['animation'] = options.get('animation');
     }
 
     getCanvasArguments() {
         let ret = {scale: 1, scaleX: 1, scaleY: 1, x: 0, y: 0};
-        // let factor = (this.model.state.data.skeletonData.version === '3.8.75' ||
-        //     (this.model.spineData.width > window.screen.availWidth * window.devicePixelRatio &&
-        //      this.model.spineData.height > window.screen.availHeight * window.devicePixelRatio)) ? window.devicePixelRatio : 1;
-        let character = this.src.includes('Hoshino') || this.src.includes('CH0258') || this.src.includes('CH0092')
-            || this.src.includes('Ayane') || this.src.includes('Serika') || this.src.includes('CH0189')
-            || this.src.includes('Hasumi') || this.src.includes('CH0190');
-        let factor = character ? window.devicePixelRatio : 1;
+        let factor = Math.max(1, Math.min(this.model.spineData.width / (window.screen.width * window.devicePixelRatio), this.model.spineData.height / (window.screen.height * window.devicePixelRatio)));
         ret['scaleX'] = this.app.renderer.width * factor / this.model.spineData.width;
         ret['scaleY'] = this.app.renderer.height * factor / this.model.spineData.height;
         ret['scale'] = Math.max(ret['scaleX'], ret['scaleY']);
@@ -81,6 +77,7 @@ class Player {
         const data = await PIXI.Assets.load(this.src);
         this.model = new Spine.Spine(data.spineData);
         console.log(`Version: ${this.model.state.data.skeletonData.version}\nWidth: ${this.model.spineData.width}\nHeight: ${this.model.spineData.height}\nRatio: ${this.model.spineData.width / this.model.spineData.height}`);
+        console.log(this.model);
         this.setup();
         const animation = this.model.state.data.skeletonData.animations;
         let defaultAni = "";

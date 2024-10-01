@@ -54635,11 +54635,11 @@ const CanvasArguments = {
 };
 
 const CharacterTag = {
-    // Abydos
+    // -------------- Abydos ---------------- 阿拜多斯
     SHIROKO: {user: "shiroko", name: "Shiroko"},
     SHIROKO_SWIMSUIT: {user: "shiroko_swimsuit", name: "CH0188"},
     SHIROKO_RIDINGSUIT: {user: "shiroko_ridingsuit", name: "Shiroko_ridingsuit"},
-    SHIROKO_TERROR: {user: "shiroko_terror", name: "CH0263"},
+    SHIROKO_TERROR: {user: "shiroko_terror", name: "CH0263"}, // TODO 存在二次处理过的模型
     HOSHINO: {user: "hoshino", name: "Hoshino"},
     HOSHINO_SWIMSUIT: {user: "hoshino_swimsuit", name: "Hoshino_swimsuit"},
     HOSHINO_ARMED: {user: "hoshino_armed", name: "CH0258"},
@@ -54650,15 +54650,154 @@ const CharacterTag = {
     SERIKA: {user: "serika", name: "Serika"},
     SERIKA_NEWYEAR: {user: "serika_newyear", name: "Serika_Newyear"},
     SERIKA_SWIMSUIT: {user: "serika_swimsuit", name: "CH0189"},
-    // Gehenna
+    // -------------- Gehenna ---------------- 格赫娜
+    // Handyman 68 便利店68
+    ARU: {user: "aru", name: "Aru"},
+    ARU_NEWYEAR: {user: "aru_newyear", name: "Aru_newyear"},
+    ARU_DRESS: {user: "aru_dress", name: "CH0240"},
     KAYOKO: {user: "kayoko", name: "Kayoko"},
-    // Trinity
-    KOHARU: {user: "koharu", name: "Koharu"},
+    KAYOKO_NEWYEAR: {user: "kayoko_newyear", name: "CH0086"},
+    KAYOKO_DRESS: {user: "kayoko_dress", name: "CH0239"}, // TODO 存在多个二次处理版本的模型
+    MUTSUKI: {user: "mutsuki", name: "Mutsuki"},
+    MUTSUKI_NEWYEAR: {user: "mutsuki_newyear", name: "mutsuki_newyear"},
+    HARUKA: {user: "haruka", name: "Haruka"},
+    HARUKA_NEWYEAR: {user: "haruka_newyear", name: "CH0087"},
+    // School Lunch Club 供给部
+    FUUKA: {user: "fuuka", name: "Fuuka"},
+    FUUKA_NEWYEAR: {user: "fuuka_newyear", name: "CH0177"},
+    JURI: {user: "juri", name: "Juri"},
+    // Gourmet Research Society 美食研究会
+    // 官方图册上写的是 Akashi Junko，但是模型扒下来就是 Zunko，为了消除歧义故两种标识符都添加在此
+    JUNKO: {user: "junko", name: "Zunko"},
+    ZUNKO: {user: "zunko", name: "Zunko"},
+    JUNKO_NEWYEAR: {user: "junko_newyear", name: "CH0192"},
+    ZUNKO_NEWYEAR: {user: "zunko_newyear", name: "CH0192"},
+    HARUNA: {user: "haruna", name: "Haruna"},
+    HARUNA_NEWYEAR: {user: "haruna_newyear", name: "CH0191"},
+    HARUNA_GYM: {user: "haruna_gym", name: "CH0193"},
+    IZUMI: {user: "izumi", name: "Izumi"},
+    IZUMI_SWIMSUIT: {user: "izumi_swimsuit", name: "Izumi_swimsuit"},
+    AKARI: {user: "akari", name: "akari"}, // TODO 明里的回忆大厅稍微有些问题，可能是需要把 home 和 bg 合并到一起
+    AKARI_NEWYEAR: {user: "akari_newyear", name: "CH0196"},
+    // Disciplinary Committee 风纪委员会
+    HINA: {user: "hina", name: "Hina"},
+    HINA_SWIMSUIT: {user: "hina_swimsuit", name: "CH0063"},
+    HINA_DRESS: {user: "hina_dress", name: "CH0230"},
+    AKO: {user: "ako", name: "Ako"},
+    AKO_DRESS: {user: "ako_dress", name: "CH0231"},
+    IORI: {user: "iori", name: "Iori"},
+    IORI_SWIMSUIT: {user: "iori_swimsuit", name: "CH0064"},
+    CHINATSU: {user: "chinatsu", name: "Chinatsu"},
+    CHINATSU_HOTSPRING: {user: "chinatsu_hotspring", name: "CH0163"},
+    // Pandemonium Society 万魔殿
+    MAKOTO: {user: "makoto", name: "CH0079"},
+    IROHA: {user: "iroha", name: "CH0156"},
+    IBUKI: {user: "ibuki", name: "Ibuki"},
+    // Hot Spring Development Department 温泉开发部
+    KASUMI: {user: "kasumi", name: "CH0089"},
+    MEGU: {user: "megu", name: "CH0088"},
+    // Emergency Medicine Club 救急医学部
+    SENA: {user: "sena", name: "CH0081"},
+    // Sparkle Club 亮闪闪部
+    KIRARA: {user: "kirara", name: "Kirara"},
+    // --------------- Trinity ----------------- 圣三一
+    // Tea Party 茶话会
     MIKA: {user: "mika", name: "CH0069"},
-    AZUSA: {user: "azusa", name: "Azusa"},
-    AZUSA_SWIMSUIT: {user: "azusa_swimsuit", name: "Azusa_swimsuit"},
+    NAGISA: {user: "nagisa", name: "Nagisa"},
+    // TODO 妃咲都实装了圣娅怎么还没动静
+    // Sisterhood 姐妹会
+    SAKURAKO: {user: "sakurako", name: "Sakurako"},
+    MARI: {user: "mari", name: "mari"},
+    MARI_GYM: {user: "mari_gym", name: "CH0186"},
+    HINATA: {user: "hinata", name: "Hinata"},
+    HINATA_SWIMSUIT: {user: "hinata_swimsuit", name: "CH0210"},
+    // Justice Realization Committee 正义实现委员会
+    // 小春划在了补习部下
+    TSURUGI: {user: "tsurugi", name: "Tsurugi"},
     HASUMI: {user: "hasumi", name: "Hasumi"},
     HASUMI_GYM: {user: "hasumi_gym", name: "CH0190"},
+    MASHIRO: {user: "mashiro", name: "Mashiro"},
+    MASHIRO_SWIMSUIT: {user: "mashiro_swimsuit", name: "Mashiro_swimsuit"},
+    ICHIKA: {user: "ichika", name: "CH0071"},
+    // Knights Hospitaller 救援骑士团
+    MINE: {user: "mine", name: "CH0152"},
+    HANAE: {user: "hanae", name: "Hanae"},
+    HANAE_CHRISTMAS: {user: "hanae_christmas", name: "CH0195"},
+    SERINA: {user: "serina", name: "serina"},
+    SERINA_CHRISTMAS: {user: "serina_christmas", name: "CH0194"},
+    // Library Committee 图书委员会
+    UI: {user: "ui", name: "CH0169"},
+    UI_SWIMSUIT: {user: "ui_swimsuit", name: "CH0204"},
+    SHIMIKO: {user: "shimiko", name: "Shimiko"},
+    // After-School Sweets Club 放学后甜品部
+    KAZUSA: {user: "kazusa", name: "kazusa"},
+    KAZUSA_BAND: {user: "kazusa_band", name: "CH0250"},
+    NATSU: {user: "natsu", name: "CH0155"},
+    AIRI: {user: "airi", name: "Airi"},
+    AIRI_BAND: {user: "airi_band", name: "CH0251"},
+    YOSHIMI: {user: "yoshimi", name: "Yoshimi"},
+    YOSHIMI_BAND: {user: "yoshimi_band", name: "CH0220"},
+    // Trinity Vigilante Crew 圣三一自警团
+    REISA: {user: "reisa", name: "CH0167"},
+    SUZUMI: {user: "suzumi", name: "Suzumi"},
+    // Supplementary Lessons Department 补习部
+    KOHARU: {user: "koharu", name: "Koharu"},
+    KOHARU_SQWIMSUIT: {user: "koharu_swimsuit", name: "CH0205"},
+    AZUSA: {user: "azusa", name: "Azusa"},
+    AZUSA_SWIMSUIT: {user: "azusa_swimsuit", name: "Azusa_swimsuit"},
+    // 官方图册为 Ajitani Hifumi 而非此处的 Hihumi，为消除歧义决定添加两个不同译名
+    HIFUMI: {user: "hifumi", name: "Hihumi"},
+    HIHUMI: {user: "hihumi", name: "Hihumi"},
+    HIFUMI_SWIMSUIT: {user: "hifumi_swimsuit", name: "CH0058"},
+    HIHUMI_SWIMSUIT: {user: "hihumi_swimsuit", name: "CH0058"},
+    HANAKO: {user: "hanako", name: "Hanako"},
+    HANAKO_SWIMSUIT: {user: "hanako_swimsuit", name: "CH0209"},
+    // ------------- Millennium Science School --------------- 千年科学学院
+    // Seminar 研讨会
+    YUUKA: {user: "yuuka", name: "Yuuka"},
+    YUUKA_GYM: {user: "yuuka_gym", name: "CH0184"},
+    NOA: {user: "noa", name: "CH0095"},
+    KOYUKI: {user: "koyuki", name: "CH0198"},
+    // Veritas 真理部
+    CHIHIRO: {user: "chihiro", name: "CH0160"},
+    MAKI: {user: "maki", name: "Maki"},
+    HARE: {user: "hare", name: "Hare"},
+    HARE_CAMP: {user: "hare_camp", name: "CH0233"},
+    KOTAMA: {user: "kotama", name: "Kotama"},
+    KOTAMA_CAMP: {user: "kotama_camp", name: "CH0232"},
+    // Cleaning & Clearing
+    NERU: {user: "neru", name: "Neru"},
+    NERU_BUNNY: {user: "neru_bunny", name: "CH0101"},
+    ASUNA: {user: "asuna", name: "Asuna"},
+    ASUNA_BUNNY: {user: "asuna_bunny", name: "CH0098"},
+    KARIN: {user: "karin", name: "Karin"},
+    KARIN_BUNNY: {user: "karin_bunny", name: "CH0100"},
+    AKANE: {user: "akane", name: "Akane"},
+    AKANE_BUNNY: {user: "akane_bunny", name: "CH0099"},
+    TOKI: {user: "toki", name: "CH0187"},
+    TOKI_BUNNY: {user: "toki_bunny", name: "CH0211"},
+    // Paranormal Affairs Department 灵异现象搜查部
+    HIMARI: {user: "himari", name: "CH0159"},
+    EIMI: {user: "eimi", name: "Eimi"},
+    EIMI_SWIMSUIT: {user: "eimi_swimsuit", name: "CH0219"},
+    // Engineering Department 工程部
+    UTAHA: {user: "utaha", name: "Utaha"},
+    UTAHA_CHEERLEADER: {user: "utaha_cheerleader", name: "CH0182"},
+    HIBIKI: {user: "hibiki", name: "Hibiki"},
+    HIBIKI_CHEERLEADER: {user: "hibiki_cheerleader", name: "CH0181"},
+    KOTORI: {user: "kotori", name: "Kotori"},
+    KOTORI_CHEERLEADER: {user: "kotori_cheerleader", name: "CH0185"},
+    // Gym Training Department 体育锻炼部
+    SUMIRE: {user: "sumire", name: "Sumire"},
+    // Game Development Department 游戏开发部
+    MIDORI: {user: "midori", name: "Midori"},
+    MIDORI_MAID: {user: "midori_maid", name: "CH0202"},
+    MOMOI: {user: "momoi", name: "Momoi"},
+    MOMOI_MAID: {user: "momoi_maid", name: "CH0201"},
+    ARIS: {user: "aris", name: "Aris"},
+    ARIS_MAID: {user: "aris_maid", name: "CH0200"},
+    YUZU: {user: "yuzu", name: "Yuzu"},
+    YUZU_MAID: {user: "yuzu_maid", name: "CH0203"},
 }
 
 function queryByName(name) {
@@ -54677,16 +54816,22 @@ function queryByName(name) {
 exports.CanvasArguments = CanvasArguments;
 exports.CharacterTag = CharacterTag;
 exports.queryByName = queryByName;
+
 },{}],528:[function(require,module,exports){
 const Player = require('./player.mjs');
 const Query = require('./constants.mjs');
 
 const param = new URLSearchParams(window.location.search);
+if (param.get('appreciation') === null) {
+    const info = document.createElement("footer");
+    info.innerHTML = `Powered by <i>BA Memory</i> by <span style="font-family:Logo;font-size: 18px">JustPure<span style="color:#0080C0">H</span><sub style="color:#FF9800">2</sub><span style="color:#0080C0">O</span></span></footer>`;
+    document.body.appendChild(info);
+}
 let src = './assets/Azusa_home/Azusa_home.skel';
 let tmp = Query.queryByName(param.get('name'));
 if (tmp !== undefined) src = tmp;
 const Canvas = new Player.Player(param, src);
-Canvas.play().then(r => console.log(`Successfully Loaded: ${src}`));
+Canvas.play().then(() => console.log(`Successfully Loaded: ${src}`));
 
 },{"./constants.mjs":527,"./player.mjs":529}],529:[function(require,module,exports){
 const Spine = require('pixi-spine');
@@ -54728,23 +54873,19 @@ class Player {
             noRepeat: false,
             animation: 'idle_01',
             ratio: 1080 / 1920,
+            fixed: false
         }
-        if (options.get('width')) this.options['width'] = options.get('width');
-        if (options.get('ratio')) this.options['ratio'] = options.get('ratio');
-        if (options.get('mute')) this.options['mute'] = options.get('mute');
-        if (options.get('noRepeat')) this.options['noRepeat'] = options.get('noRepeat');
-        if (options.get('animation')) this.options['animation'] = options.get('animation');
+        if (options.get('fixed') !== null) this.options['fixed'] = true;
+        if (options.get('width') !== null) this.options['width'] = options.get('width');
+        if (options.get('ratio') !== null) this.options['ratio'] = options.get('ratio');
+        if (options.get('mute') !== null) this.options['mute'] = options.get('mute');
+        if (options.get('noRepeat') !== null) this.options['noRepeat'] = options.get('noRepeat');
+        if (options.get('animation') !== null) this.options['animation'] = options.get('animation');
     }
 
     getCanvasArguments() {
         let ret = {scale: 1, scaleX: 1, scaleY: 1, x: 0, y: 0};
-        // let factor = (this.model.state.data.skeletonData.version === '3.8.75' ||
-        //     (this.model.spineData.width > window.screen.availWidth * window.devicePixelRatio &&
-        //      this.model.spineData.height > window.screen.availHeight * window.devicePixelRatio)) ? window.devicePixelRatio : 1;
-        let character = this.src.includes('Hoshino') || this.src.includes('CH0258') || this.src.includes('CH0092')
-            || this.src.includes('Ayane') || this.src.includes('Serika') || this.src.includes('CH0189')
-            || this.src.includes('Hasumi') || this.src.includes('CH0190');
-        let factor = character ? window.devicePixelRatio : 1;
+        let factor = Math.max(1, Math.min(this.model.spineData.width / (window.screen.width * window.devicePixelRatio), this.model.spineData.height / (window.screen.height * window.devicePixelRatio)));
         ret['scaleX'] = this.app.renderer.width * factor / this.model.spineData.width;
         ret['scaleY'] = this.app.renderer.height * factor / this.model.spineData.height;
         ret['scale'] = Math.max(ret['scaleX'], ret['scaleY']);
@@ -54772,6 +54913,7 @@ class Player {
         const data = await PIXI.Assets.load(this.src);
         this.model = new Spine.Spine(data.spineData);
         console.log(`Version: ${this.model.state.data.skeletonData.version}\nWidth: ${this.model.spineData.width}\nHeight: ${this.model.spineData.height}\nRatio: ${this.model.spineData.width / this.model.spineData.height}`);
+        console.log(this.model);
         this.setup();
         const animation = this.model.state.data.skeletonData.animations;
         let defaultAni = "";
