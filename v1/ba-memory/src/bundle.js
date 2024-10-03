@@ -54639,7 +54639,8 @@ const CharacterTag = {
     SHIROKO: {user: "shiroko", name: "Shiroko"},
     SHIROKO_SWIMSUIT: {user: "shiroko_swimsuit", name: "CH0188"},
     SHIROKO_RIDINGSUIT: {user: "shiroko_ridingsuit", name: "Shiroko_ridingsuit"},
-    SHIROKO_TERROR: {user: "shiroko_terror", name: "CH0263"}, // TODO 存在二次处理过的模型
+    SHIROKO_TERROR: {user: "shiroko_terror", name: "CH0263"},
+    SHIROKO_TERROR_LIGHT_WEAKENED: {user: "shiroko_terror_home_fix", name: "CH0263_home_fix"},
     HOSHINO: {user: "hoshino", name: "Hoshino"},
     HOSHINO_SWIMSUIT: {user: "hoshino_swimsuit", name: "Hoshino_swimsuit"},
     HOSHINO_ARMED: {user: "hoshino_armed", name: "CH0258"},
@@ -54657,7 +54658,10 @@ const CharacterTag = {
     ARU_DRESS: {user: "aru_dress", name: "CH0240"},
     KAYOKO: {user: "kayoko", name: "Kayoko"},
     KAYOKO_NEWYEAR: {user: "kayoko_newyear", name: "CH0086"},
-    KAYOKO_DRESS: {user: "kayoko_dress", name: "CH0239"}, // TODO 存在多个二次处理版本的模型
+    KAYOKO_DRESS: {user: "kayoko_dress", name: "CH0239"},
+    KAYOKO_DRESS_EXPOSURE_FIX: {user: "kayoko_dress_home_fix", name: "CH0239_home_fix"},
+    KAYOKO_DRESS_LIGHT_WEAKENED: {user: "kayoko_dress_home_dark", name: "CH0239_home_dark"},
+    KAYOKO_DRESS_LIGHT_REMOVED: {user: "kayoko_dress_home_deep", name: "CH0239_home_deep"},
     MUTSUKI: {user: "mutsuki", name: "Mutsuki"},
     MUTSUKI_NEWYEAR: {user: "mutsuki_newyear", name: "mutsuki_newyear"},
     HARUKA: {user: "haruka", name: "Haruka"},
@@ -54677,7 +54681,9 @@ const CharacterTag = {
     HARUNA_GYM: {user: "haruna_gym", name: "CH0193"},
     IZUMI: {user: "izumi", name: "Izumi"},
     IZUMI_SWIMSUIT: {user: "izumi_swimsuit", name: "Izumi_swimsuit"},
-    AKARI: {user: "akari", name: "akari"}, // TODO 明里的回忆大厅稍微有些问题，可能是需要把 home 和 bg 合并到一起
+    AKARI: {user: "akari", name: "akari"},
+    AKARI_BG: {user: "akari_bg", name: "akari_bg", strict: true},
+    AKARI_SCENE: {user: "akari_scene", name: "akari_scene", strict: true}, // TODO Deprecate this
     AKARI_NEWYEAR: {user: "akari_newyear", name: "CH0196"},
     // Disciplinary Committee 风纪委员会
     HINA: {user: "hina", name: "Hina"},
@@ -54704,7 +54710,7 @@ const CharacterTag = {
     // Tea Party 茶话会
     MIKA: {user: "mika", name: "CH0069"},
     NAGISA: {user: "nagisa", name: "Nagisa"},
-    // TODO 妃咲都实装了圣娅怎么还没动静
+    // TODO Insert Seia joke here
     // Sisterhood 姐妹会
     SAKURAKO: {user: "sakurako", name: "Sakurako"},
     MARI: {user: "mari", name: "mari"},
@@ -54756,6 +54762,7 @@ const CharacterTag = {
     // Seminar 研讨会
     YUUKA: {user: "yuuka", name: "Yuuka"},
     YUUKA_GYM: {user: "yuuka_gym", name: "CH0184"},
+    YUUKA_GYM_00: {user: "yuuka_gym_00", name: "CH0184_00", strict: true},
     NOA: {user: "noa", name: "CH0095"},
     KOYUKI: {user: "koyuki", name: "CH0198"},
     // Veritas 真理部
@@ -54798,16 +54805,123 @@ const CharacterTag = {
     ARIS_MAID: {user: "aris_maid", name: "CH0200"},
     YUZU: {user: "yuzu", name: "Yuzu"},
     YUZU_MAID: {user: "yuzu_maid", name: "CH0203"},
+    // ------------------- Hyakkiyako -------------------- 百鬼夜行
+    // Yin-Yang Club 阴阳部
+    KAHO: {user: "kaho", name: "CH0107"},
+    CHISE: {user: "chise", name: "Chise"},
+    CHISE_SWIMSUIT: {user: "chise_swimsuit", name: "CH0178"},
+    // Hyakkaryouran Conflict Resolution Council 百花缭乱调停委员会
+    RENGE: {user: "renge", name: "CH0224"},
+    KIKYOU: {user: "kikyou", name: "CH0225"},
+    YUKARI: {user: "yukari", name: "CH0161"},
+    // Festival Management Committee 节庆营运管理部
+    SHIZUKO: {user: "shizuko", name: "Shizuko"},
+    SHIZUKO_SWIMSUIT: {user: "shizuko_swimsuit", name: "CH0180"},
+    PINA: {user: "pina", name: "Pina"},
+    UMIKA: {user: "umika", name: "CH0110"},
+    // Etiquette Training Society 修行部
+    TSUBAKI: {user: "tsubaki", name: "Tsubaki"},
+    TSUBAKI_GUIDE: {user: "tsubaki_guide", name: "CH0255"},
+    MIMORI: {user: "mimori", name: "Mimori"},
+    MIMORI_SWIMSUIT: {user: "mimori_swimsuit", name: "CH0183"},
+    KAEDE: {user: "kaede", name: "Kaede"},
+    // Ninjutsu Research Department 忍术研究部
+    MICHIRU: {user: "michiru", name: "CH0113"},
+    IZUNA: {user: "izuna", name: "Izuna"},
+    IZUNA_SWIMSUIT: {user: "izuna_swimsuit", name: "CH0179"},
+    TSUKUYO: {user: "tsukuyo", name: "CH0114"},
+    // Seven Prisoners 七囚人
+    WAKAMO: {user: "wakamo", name: "Wakamo"},
+    WAKAMO_SCENE_0: {user: "wakamo_scene_0", name: "Wakamo_Scene_0", strict: true},
+    WAKAMO_SWIMSUIT: {user: "wakamo_swimsuit", name: "CH0175"},
+    // ------------------ Shanhaijing ------------------ 山海经
+    // Xuanlong Office 玄龙门
+    KISAKI: {user: "kisaki", name: "CH0139"}, // IMPL implemented on 24/09/25
+    MINA: {user: "mina", name: "CH0138"},
+    // Xuanwu Merchant Association 玄武商会
+    RUMI: {user: "rumi", name: "CH0135"},
+    // 多读音消歧
+    REIJO: {user: "reijo", name: "reizyo"},
+    REIZYO: {user: "reizyo", name: "reizyo"},
+    // Chinese Alchemy Study Club 炼丹术研究会
+    SAYA: {user: "saya", name: "Saya"},
+    SAYA_CASUAL: {user: "saya_casual", name: "Saya_casual"},
+    // Plum Blossom Garden 梅花园
+    SHUN: {user: "shun", name: "Shun"},
+    SHUN_YOUNG: {user: "shun_young", name: "CH0066"},
+    KOKONA: {user: "kokona", name: "CH0137"},
+    // ------------------- Red Winter ----------------------- 红冬
+    // Red Winter Office 红冬事务局
+    CHERINO: {user: "cherino", name: "Cherino"},
+    CHERINO_HOTPSRING: {user: "cherino_hotspring", name: "CH0164"},
+    TOMOE: {user: "tomoe", name: "Tomoe"},
+    TOMOE_QIPAO: {user: "tomoe_qipao", name: "CH0271"},
+    MARINA: {user: "marina", name: "Marina"},
+    MARINA_QIPAO: {user: "marina_qipao", name: "CH0270"},
+    // Public Works Department 劳务部
+    MINORI: {user: "minori", name: "CH0214"},
+    // Knowledge Liberation Front 知识解放战线
+    MERU: {user: "meru", name: "CH0124"},
+    MOMIJI: {user: "momiji", name: "momiji"},
+    // No.227 Special Class 227特别班
+    NODOKA: {user: "nodoka", name: "Nodoka"},
+    NODOKA_HOTSPRING: {user: "nodoka_hotspring", name: "CH0165"},
+    SHIGURE: {user: "shigure", name: "Shigure"},
+    SHIGURE_00: {user: "shigure_00", name: "Shigure_00", strict: true},
+    SHIGURE_01: {user: "shigure_01", name: "Shigure_01", strict: true},
+    SHIGURE_HOTSPRING: {user: "shigure_hotspring", name: "CH0123"},
+    // --------------------- Valkyrie --------------------- 瓦尔基里
+    // Public Security Bureau 公安局
+    KANNA: {user: "kanna", name: "CH0170"},
+    KANNA_SWIMSUIT: {user: "kanna_swimsuit", name: "CH0260"},
+    // Community Safety Bureau 生活安全局
+    KIRINO: {user: "kirino", name: "Kirino"},
+    KIRINO_SWIMSUIT: {user: "kirino_swimsuit", name: "CH0262"},
+    FUBUKI: {user: "fubuki", name: "CH0141"},
+    FUBUKI_SWIMSUIT: {user: "fubuki_swimsuit", name: "CH0261"},
+    FUBUKI_SWIMSUIT_LIGHT_WEAKENED: {user: "fubuki_swimsuit_home_fix", name: "CH0261_home_fix2"},
+    // ---------------------- Arius ----------------------- 阿里乌斯
+    // 白洲梓划在圣三一下
+    ATSUKO: {user: "atsuko", name: "Atsuko"},
+    ATSUKO_SWIMSUIT: {user: "atsuko_swimsuit", name: "CH0267"},
+    ATSUKO_SWIMSUIT_LIGHT_WEAKENED: {user: "atsuko_swimsuit_home_fix", name: "CH0267_home_fix"},
+    SAORI: {user: "saori", name: "Saori"},
+    SAORI_SWIMSUIT: {user: "saori_swimsuit", name: "CH0266"},
+    HIYORI: {user: "hiyori", name: "Hiyori"},
+    HIYORI_SWIMSUIT: {user: "hiyori_swimsuit", name: "CH0269"},
+    HIYORI_SWIMSUIT_LIGHT_WEAKENED: {user: "hiyori_swimsuit_home_fix", name: "CH0269_home_fix"},
+    MISAKI: {user: "misaki", name: "Misaki"},
+    // ----------------------- SRT -------------------------
+    // RABBIT Platoon RABBIT小队
+    MIYAKO: {user: "miyako", name: "Miyako"},
+    MIYAKO_SWIMSUIT: {user: "miyako_swimsuit", name: "CH0215"},
+    MIYU: {user: "miyu", name: "CH0145"},
+    MIYU_SWIMSUIT: {user: "miyu_swimsuit", name: "CH0218"},
+    SAKI: {user: "saki", name: "CH0144"},
+    SAKI_SWIMSUIT: {user: "saki_swimsuit", name: "CH0217"},
+    MOE: {user: "moe", name: "Moe"},
+    MOE_SWIMSUIT: {user: "moe_swimsuit", name: "CH0216"},
+    // ------------ Somewhere Outside Kivotos ------------ 联动角色
+    // VOCALOID V家
+    MIKU: {user: "miku", name: "CH9999"},
+    // Academy City 学园都市
+    MIKOTO: {user: "mikoto", name: "CH9998"},
+    SHOKUHOU_MISAKI: {user: "shokuhou_misaki", name: "CH9997"}, // 食蜂操祈和阿里乌斯的戒野美咲撞名了，故前者只能通过全名查询
+    RUIKO: {user: "ruiko", name: "CH0996"},
 }
 
 function queryByName(name) {
     if (name === null) return;
+    if ((name.includes('reijo') || name.includes('reizyo')) && name.includes('fix')) {
+        console.log(`Found: reizyo_home_fix from Key: ${name}`);
+        return `./assets/reizyo_home_fix/reizyo_home.skel`;
+    }
     for (let i in CharacterTag) {
         if (CharacterTag[i]['user'].toLowerCase() === name.toLowerCase() || CharacterTag[i]['name'].toLowerCase() === name.toLowerCase()) {
-            let name = CharacterTag[i]['name'];
-            console.log(`Found: ${name}`);
-            if (name.indexOf('_') === -1 || !name.endsWith('_home')) name += '_home';
-            return `./assets/${name}/${name}.skel`;
+            let res = CharacterTag[i]['name'];
+            if (CharacterTag[i]['strict'] === undefined && res.indexOf('_home') === -1) res += '_home';
+            console.log(`Found: ${res} from Key: ${name}`);
+            return `./assets/${res}/${res}.skel`;
         }
     }
     throw new Error(`Error when querying with name: ${name}! Please check your input`);
@@ -54823,9 +54937,8 @@ const Query = require('./constants.mjs');
 
 const param = new URLSearchParams(window.location.search);
 if (param.get('appreciation') === null) {
-    const info = document.createElement("footer");
-    info.innerHTML = `Powered by <i>BA Memory</i> by <span style="font-family:Logo;font-size: 18px">JustPure<span style="color:#0080C0">H</span><sub style="color:#FF9800">2</sub><span style="color:#0080C0">O</span></span></footer>`;
-    document.body.appendChild(info);
+    const info = document.getElementById("info");
+    info.innerHTML = `Powered by <i>BA Memory</i> by <b>JustPure<span style="color:#0080C0">H</span><sub style="color:#FF9800">2</sub><span style="color:#0080C0">O</span></b></footer>`;
 }
 let src = './assets/Azusa_home/Azusa_home.skel';
 let tmp = Query.queryByName(param.get('name'));
@@ -54885,7 +54998,7 @@ class Player {
 
     getCanvasArguments() {
         let ret = {scale: 1, scaleX: 1, scaleY: 1, x: 0, y: 0};
-        let factor = Math.max(1, Math.min(this.model.spineData.width / (window.screen.width * window.devicePixelRatio), this.model.spineData.height / (window.screen.height * window.devicePixelRatio)));
+        let factor = Math.max(1, Math.min(this.model.spineData.width / (window.screen.availWidth * window.devicePixelRatio), this.model.spineData.height / (window.screen.availHeight * window.devicePixelRatio)));
         ret['scaleX'] = this.app.renderer.width * factor / this.model.spineData.width;
         ret['scaleY'] = this.app.renderer.height * factor / this.model.spineData.height;
         ret['scale'] = Math.max(ret['scaleX'], ret['scaleY']);

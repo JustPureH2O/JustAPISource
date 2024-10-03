@@ -49,7 +49,7 @@ class Player {
 
     getCanvasArguments() {
         let ret = {scale: 1, scaleX: 1, scaleY: 1, x: 0, y: 0};
-        let factor = Math.max(1, Math.min(this.model.spineData.width / (window.screen.width * window.devicePixelRatio), this.model.spineData.height / (window.screen.height * window.devicePixelRatio)));
+        let factor = Math.max(1, Math.min(this.model.spineData.width / (window.screen.availWidth * window.devicePixelRatio), this.model.spineData.height / (window.screen.availHeight * window.devicePixelRatio)));
         ret['scaleX'] = this.app.renderer.width * factor / this.model.spineData.width;
         ret['scaleY'] = this.app.renderer.height * factor / this.model.spineData.height;
         ret['scale'] = Math.max(ret['scaleX'], ret['scaleY']);
