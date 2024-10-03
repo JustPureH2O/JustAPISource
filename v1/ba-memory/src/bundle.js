@@ -54936,6 +54936,16 @@ const Player = require('./player.mjs');
 const Query = require('./constants.mjs');
 
 const param = new URLSearchParams(window.location.search);
+
+if (param.get('queryStudents') !== null) {
+    let txt = '[';
+    for (let i in Query.CharacterTag) {
+        txt += `{"user": "${Query.CharacterTag[i].user}", "name": "${Query.CharacterTag[i].name}", "strict": "${Query.CharacterTag[i].strict === undefined ? 'false' : 'true'}"},`;
+    }
+    txt = txt.slice(0, -1);
+    txt += ']';
+    return JSON.parse(txt);
+}
 if (param.get('appreciation') === null) {
     const info = document.getElementById("info");
     info.innerHTML = `Powered by <i>BA Memory</i> by <b>JustPure<span style="color:#0080C0">H</span><sub style="color:#FF9800">2</sub><span style="color:#0080C0">O</span></b></footer>`;
