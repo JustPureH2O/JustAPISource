@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    background: rgb(255, 255, 255);
+}
+
+body {
+    overflow-y: scroll;
+}
+
+.unit {
+    display: flex;
+    flex-direction: row;
+    margin-top: .2em;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar {
+    flex: none;
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.group {
+    display: flex;
+    flex-direction: column;
+    margin-left: .5em;
+}
+
+.student {
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.textbox {
+    background: #383838;
+    width: fit-content;
+    padding: .5em;
+    align-items: flex-start;
+    margin-top: .1em;
+    margin-bottom: .3em;
+}
+
+.textbox[data-round] {
+    border-radius: .5em;
+}
+
+.text {
+    color: #FFFFFF;
+    background: #383838;
+}
+
+.reply {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #3d5e7e;
+    padding: .5em;
+    margin-left: auto;
+    border-radius: .5em;
+}
+
+.selector {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: .5em;
+    background: #3d5e7e;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    background: inherit;
+    border-bottom: 1px solid #1e2136;
+}
+
+.button {
+    cursor: pointer;
+    min-width: 9em;
+    margin-top: .4em;
+    padding: .5em;
+    border-radius: .4em;
+    background-color: #383838;
+    color: #FFFFFF;
+}
+
+.button[data-unselected] {
+    transition: background-color ease .375s;
+}
+
+.button[data-unselected]:hover {
+    background-color: #639bdf;
+}
+
+.button[data-selected] {
+    background: #4c78ae;
+}
+
+.status {
+    background: inherit;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: .2em;
+}
+
+.status:before {
+    display: inline-block;
+    background-color: #6da7ed;
+    margin-right: .5em;
+    width: .1em;
+    height: .95em;
+    border-radius: 5%;
+    content: "";
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+}
