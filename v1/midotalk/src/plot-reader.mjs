@@ -10,6 +10,8 @@ class PlotReader {
     entryPoint;
     mappings;
     groups;
+    playState = 0; // 0 未激活，1 正在播放，2 等待用户输入，3 当前入点剧情播放已结束
+    nextGID;
 
     constructor(path, options) {
         this.path = path;
@@ -56,20 +58,34 @@ class PlotReader {
             if (entry >= this.entryPoint.length) {
                 throw new Error(`Requesting for entrypoint #${entry} out of bound [0,${this.entryPoint.length - 1}]!`);
             }
-            let lastGID = this.entryPoint[entry]['MessageGroupId'];
-            let i = 0;
-            while (lastGID > 0 && i < 2) {
-                await this.playPart(lastGID).then(res => {
-                    console.log(`Done ${i}`);
-                    i++;
-                    console.log(res);
-                    lastGID = res;
-                });
+            this.nextGID = this.entryPoint[entry]['MessageGroupId'];
+            await this.resume(false);
+            console.log("Over");
+        });
+    }
+
+    async resume(flag, GID = this.nextGID) {
+        console.log("Resuming...");
+        if (flag) console.log("Resume from click");
+        return new Promise(async (resolve, reject) => {
+            if (this.playState !== 2 && this.playState !== 0) {
+                console.warn(`Cannot resume playing. Player status is ${this.playState}`);
+                reject(GID);
             }
+            this.cleanup(GID);
+            await this.playPart(this.nextGID).then(res => {
+                this.nextGID = res[0];
+                this.playState = 2;
+                for (let i of res[1]) {
+                    document.getElementById(`button ${i['Id']}`).addEventListener("click", () => {this.resume(true, i['NextGroupId'])});
+                }
+            });
+            resolve(GID);
         });
     }
 
     async playPart(id) {
+        this.playState = 1;
         let that = this
         return new Promise(async resolve => {
             let curGroup = that.groups.get(id);
@@ -111,18 +127,19 @@ class PlotReader {
         let container = document.getElementById("container");
         let ret = 0;
         let GID = group[0]['MessageGroupId'];
-        console.log(GID);
         container.innerHTML += `<div class="unit ${GID}"><div class="reply"><div class="info"><span class="status">回复</span></div><div class="selector ${GID}" id="selector ${GID}"></div></div></div>`;
         let selector = document.getElementById(`selector ${GID}`);
         for (let child of group) {
             ret = child['NextGroupId'];
             selector.innerHTML += `<div data-unselected class="button ${child['Id']}" id="button ${child['Id']}">${child['MessageCN']}</div>`;
         }
-        return ret;
+        this.playState = 2;
+        return [ret, group];
         //});
     }
 
     cleanup(id) {
+        if (id === this.nextGID) return;
         let flag = false;
         let found = false;
         for (let cur of this.mappings.values()) {
