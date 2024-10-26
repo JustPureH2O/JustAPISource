@@ -82,8 +82,10 @@ const CharacterTag = {
     // TODO Insert Seia joke here
     // Sisterhood 姐妹会
     SAKURAKO: {user: "sakurako", name: "Sakurako"},
+    SAKURAKO_IDOL: {user: "sakurako_idol", name: "CH0274", V4: true}, // IMPL implemented on 2024/10/23
     MARI: {user: "mari", name: "mari"},
     MARI_GYM: {user: "mari_gym", name: "CH0186"},
+    MARI_IDOL: {user: "mari_idol", name: "CH0273", V4: true}, // IMPL implemented on 2024/10/23
     HINATA: {user: "hinata", name: "Hinata"},
     HINATA_SWIMSUIT: {user: "hinata_swimsuit", name: "CH0210"},
     // Justice Realization Committee 正义实现委员会
@@ -96,6 +98,7 @@ const CharacterTag = {
     ICHIKA: {user: "ichika", name: "CH0071"},
     // Knights Hospitaller 救援骑士团
     MINE: {user: "mine", name: "CH0152"},
+    MINE_IDOL: {user: "mine_idol", name: "CH0275", V4: true}, // IMPL implemented on 2024/10/23
     HANAE: {user: "hanae", name: "Hanae"},
     HANAE_CHRISTMAS: {user: "hanae_christmas", name: "CH0195"},
     SERINA: {user: "serina", name: "serina"},
@@ -205,12 +208,12 @@ const CharacterTag = {
     WAKAMO_SWIMSUIT: {user: "wakamo_swimsuit", name: "CH0175"},
     // ------------------ Shanhaijing ------------------ 山海经
     // Xuanlong Office 玄龙门
-    KISAKI: {user: "kisaki", name: "CH0139"}, // IMPL implemented on 24/09/25
+    KISAKI: {user: "kisaki", name: "CH0139"}, // IMPL implemented on 2024/09/25
     MINA: {user: "mina", name: "CH0138"},
     // Xuanwu Merchant Association 玄武商会
     RUMI: {user: "rumi", name: "CH0135"},
     // 多读音消歧
-    REIJO: {user: "reijo", name: "reizyo"},
+    REIJO: {user: "reijo", name: "reizyo"}, // IMPL implemented on 2024/09/25
     REIZYO: {user: "reizyo", name: "reizyo"},
     // Chinese Alchemy Study Club 炼丹术研究会
     SAYA: {user: "saya", name: "Saya"},
@@ -283,19 +286,20 @@ function queryByName(name) {
     if (name === null) return;
     if ((name.includes('reijo') || name.includes('reizyo')) && name.includes('fix')) {
         console.log(`Found: reizyo_home_fix from Key: ${name}`);
-        return `./assets/reizyo_home_fix/reizyo_home.skel`;
+        return [`./assets/reizyo_home_fix/reizyo_home.skel`, false];
     }
     for (let i in CharacterTag) {
         if (CharacterTag[i]['user'].toLowerCase() === name.toLowerCase() || CharacterTag[i]['name'].toLowerCase() === name.toLowerCase()) {
             let res = CharacterTag[i]['name'];
             if (CharacterTag[i]['strict'] === undefined && res.indexOf('_home') === -1) res += '_home';
-            console.log(`Found: ${res} from Key: ${name}`);
-            return `./assets/${res}/${res}.skel`;
+            return [`./assets/${res}/${res}.skel`, CharacterTag[i]["V4"]];
         }
     }
     throw new Error(`Error when querying with name: ${name}! Please check your input`);
 }
 
-exports.CanvasArguments = CanvasArguments;
-exports.CharacterTag = CharacterTag;
-exports.queryByName = queryByName;
+export {
+    CharacterTag,
+    queryByName,
+    CanvasArguments
+}

@@ -2,15 +2,26 @@
   "name": "ba-memory",
   "version": "1.0.0",
   "dependencies": {
-    "browserify": "^17.0.0",
-    "howler": "^2.2.4",
-    "pixi-spine": "^4.0.4",
-    "pixi.js": "^7.3.2",
-    "requirejs": "^2.3.7"
+    "@esotericsoftware/spine-pixi": "~4.2.61",
+    "@pixi/text": "^7.4.2",
+    "pixi.js": "~7.4.2",
+    "pixi-spine": "~4.0.4"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JustPureH2O/JustAPI"
+    "url": "git+https://github.com/JustPureH2O/JustAPI.git"
   },
-  "private": true
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/JustPureH2O/JustAPI/issues"
+  },
+  "homepage": "https://github.com/JustPureH2O/JustAPI#readme",
+  "main": "index.js",
+  "scripts": {
+    "generate": "node_modules/.bin/browserify src/main.cjs -p esmify > src/bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
