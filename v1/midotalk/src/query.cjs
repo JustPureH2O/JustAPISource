@@ -13,4 +13,8 @@ function queryByName(name) {
     throw new Error(`Could not find character with name or ID ${name}. Please check your input!`);
 }
 
-exports.queryByName = queryByName;
+export {
+    queryByName
+}
+export default class Query {
+}
