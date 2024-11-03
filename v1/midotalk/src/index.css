@@ -19,6 +19,10 @@ body {
     flex-direction: column;
 }
 
+.box[data-right] {
+    margin-left: auto;
+}
+
 .avatar {
     flex: none;
     width: 3.5em;
@@ -66,12 +70,22 @@ body {
     border-radius: .5em;
 }
 
+.story {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #872641 url("./assets/common/heart.svg") no-repeat right -25% center;
+    padding: .5em;
+    margin-left: auto;
+    border-radius: .5em;
+}
+
 .selector {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: .5em;
-    background: #3d5e7e;
+    background-color: transparent;
 }
 
 .info {
@@ -79,7 +93,7 @@ body {
     flex-direction: row;
     align-items: flex-start;
     width: 100%;
-    background: inherit;
+    background-color: transparent;
     border-bottom: 1px solid #1e2136;
 }
 
@@ -105,8 +119,35 @@ body {
     background: #4c78ae;
 }
 
+.button[data-story] {
+    background-color: #e36889;
+}
+
+.suitable-button {
+    cursor: pointer;
+    width: fit-content;
+    margin-top: .4em;
+    padding: .5em;
+    border-radius: .4em;
+    background-color: #383838;
+    color: #FFFFFF;
+    transition: background-color ease .2s;
+}
+
+.suitable-button:hover {
+    background-color: #2ca649;
+}
+
+.suitable-button[data-left] {
+    margin-right: auto;
+}
+
+.suitable-button[data-right] {
+    margin-left: auto;
+}
+
 .status {
-    background: inherit;
+    background-color: inherit;
     font-weight: 600;
     color: #FFFFFF;
     margin-bottom: .2em;
@@ -122,9 +163,45 @@ body {
     content: "";
 }
 
+.stat {
+    background-color: inherit;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: .2em;
+}
+
+.stat:before {
+    display: inline-block;
+    background-color: #e36889;
+    margin-right: .5em;
+    width: .1em;
+    height: .95em;
+    border-radius: 5%;
+    content: "";
+}
+
 .container {
     display: flex;
     flex-direction: column;
     width: 60%;
     height: 100%;
+}
+
+.end {
+    text-align: center;
+    border-top: 2px solid #000;
+    margin: 2em 1em .5em 1em;
+}
+
+.endtxt {
+    position: relative;
+    top: -0.7em;
+    padding: .5em;
+    font-weight: 550;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    margin: .5em 1em .5em 1em;
 }
