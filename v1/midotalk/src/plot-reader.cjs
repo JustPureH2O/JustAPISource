@@ -9,6 +9,7 @@ class PlotReader {
     entryPoint;
     mappings;
     groups;
+    visited;
     playState = 0; // 0 未激活，1 正在播放，2 等待用户输入，3 当前入点剧情播放已结束
     nextGID;
     currentEntry;
@@ -25,6 +26,7 @@ class PlotReader {
             this.entryPoint = [];
             this.mappings = new Map();
             this.groups = new Map();
+            this.visited = new Map();
             await $.getJSON(this.path, (data) => {
                 $.each(data, (key, info) => {
                     if (key === 'title') {
@@ -88,26 +90,45 @@ class PlotReader {
         }
     }
 
-    async resume(flag = false, GID = this.nextGID) {
+    async resume(flag = 0, GID = this.nextGID) {
         return new Promise(async (resolve, reject) => {
             if (this.playState !== 2 && this.playState !== 0) {
                 console.warn(`Cannot resume playing. Player status is ${this.playState}`);
                 reject(GID);
             }
-            await this.playPart(this.nextGID).then(res => {
+            await this.playPart(GID, flag).then(res => {
+                console.log(res);
                 this.nextGID = res === undefined ? this.entry === this.entryPoint.length - 1 ? 0 : this.entryPoint[this.entry + 1] : res[0];
                 this.playState = 2;
-
                 if (res !== undefined) {
                     for (let i of res[1]) {
-                        document.getElementById(`button ${i['Id']}`).addEventListener("click", () => {
-                            if (this.playState !== 1) {
-                                let oBID = this.findStateClicked(i['MessageGroupId']);
-                                let res = this.cleanup(i['MessageGroupId'], oBID, i['Id']);
-                                this.markAsClicked(i['MessageGroupId'], oBID, i['Id']);
-                                if (res) this.resume(true, i['NextGroupId']).catch((GID) => this.cleanup(GID, 1, 2, true));
-                            }
-                        });
+                        if (res[2]) {
+                            console.log(i['Id']);
+                            document.getElementById(`button ${i['Id']}`).addEventListener("click", () => {
+                                if (this.playState !== 1) {
+                                    let oBID = this.findStateClicked(i['MessageGroupId']);
+                                    this.markAsClicked(i['MessageGroupId'], oBID, i['Id']);
+                                    let ret = this.addStory(res[1]);
+                                    if (ret !== undefined) {
+                                        for (let j of ret[1]) {
+                                            console.log($(`button ${j['Id']}`));
+                                            document.getElementsByClassName(`suitable-button ${j['Id']}`)[0].addEventListener("click", () => {
+                                               this.resume(0, j['NextGroupId']);
+                                            });
+                                        }
+                                    }
+                                }
+                            });
+                        } else {
+                            document.getElementById(`button ${i['Id']}`).addEventListener("click", () => {
+                                if (this.playState !== 1) {
+                                    let oBID = this.findStateClicked(i['MessageGroupId']);
+                                    let stat = this.cleanup(i['MessageGroupId'], oBID, i['Id']);
+                                    this.markAsClicked(i['MessageGroupId'], oBID, i['Id']);
+                                    if (stat) this.resume(0, i['NextGroupId']).catch((GID) => this.cleanup(GID, 1, 2, true));
+                                }
+                            });
+                        }
                     }
                 } else this.drawFooterWidgets();
             });
@@ -127,15 +148,14 @@ class PlotReader {
         let baseURL = window.location.origin + window.location.pathname;
         let params = new URLSearchParams(window.location.search);
         if (this.entry > 0) {
-            if (params.get('entry') !== null) params['entry'] = this.entry - 1;
+            if (params.get('entry') !== null) params['entry'] = params['entry'] - 1;
             else params.append('entry', this.entry - 1);
-            footer.insertAdjacentHTML("beforeend", `<div data-left class="suitable-button" onclick="window.location.href='${baseURL+'?'+params.toString()}'">上一幕 ${this.titleList[this.entry - 1][`Text${Utils.toUpperCamel(this.options['LANG'])}`]}</div>`);
+            footer.insertAdjacentHTML("beforeend", `<div data-left class="suitable-button" onclick="window.location.href='${baseURL + '?' + params.toString()}'">上一幕 ${this.titleList[this.entry - 1][`Text${Utils.toUpperCamel(this.options['LANG'])}`]}</div>`);
         }
         if (this.entry < this.entryPoint.length - 1) {
-            if (params.get('entry') !== null) params['entry'] = this.entry + 1;
+            if (params.get('entry') !== null) params['entry'] = params['entry'] + 1;
             else params.append('entry', this.entry + 1);
-            console.log(Utils.toUpperCamel(this.options['LANG']));
-            footer.insertAdjacentHTML("beforeend", `<div data-right class="suitable-button" onclick="window.location.href='${baseURL+'?'+params.toString()}'">下一幕 ${this.titleList[this.entry + 1][`Text${Utils.toUpperCamel(this.options['LANG'])}`]}</div>`);
+            footer.insertAdjacentHTML("beforeend", `<div data-right class="suitable-button" onclick="window.location.href='${baseURL + '?' + params.toString()}'">下一幕 ${this.titleList[this.entry + 1][`Text${Utils.toUpperCamel(this.options['LANG'])}`]}</div>`);
         }
     }
 
@@ -150,31 +170,37 @@ class PlotReader {
         return ret;
     }
 
-    async playPart(id) {
+    async playPart(id, special) {
         this.playState = 1;
-        let that = this
         return new Promise(async resolve => {
-            let curGroup = that.groups.get(id);
-            let nxtGroup = that.groups.get(curGroup[curGroup.length - 1]['NextGroupId']);
+            if (this.entry < this.entryPoint.length - 1 && id >= this.entryPoint[this.entry + 1]['MessageGroupId']) {
+                resolve(undefined);
+            }
+            let curGroup = this.groups.get(id);
+            console.log(curGroup);
+            let nxtGroup = this.groups.get(curGroup[curGroup.length - 1]['NextGroupId']);
             let lastMID = 0;
-            let flag = true, flag1 = true;
-            let tmp;
-            while (curGroup[0]['MessageCondition'] !== 'Answer') {
+            let flag = true;
+            let tmp = special ? curGroup : undefined;
+            while (!special && curGroup[0]['MessageCondition'] !== 'Answer') {
+                console.log(special);
+                if (this.visited.get(id)) break;
                 if (curGroup[0]['MessageCondition'] === 'FavorRankUp' && curGroup[0]['MessageGroupId'] !== this.currentEntry) break;
-                if (parseInt(curGroup[curGroup.length - 1]['FavorScheduleId']) !== 0) flag = false;
-                await that.addGroup(curGroup).then(res => {
+                if (parseInt(curGroup[curGroup.length - 1]['FavorScheduleId']) > 0) flag = false;
+                await this.addGroup(curGroup).then(res => {
                     if (nxtGroup !== undefined) {
                         if (!flag) tmp = curGroup;
                         lastMID = res;
                         curGroup = nxtGroup;
-                        nxtGroup = that.groups.get(curGroup[curGroup.length - 1]['NextGroupId']);
+                        nxtGroup = this.groups.get(curGroup[curGroup.length - 1]['NextGroupId']);
                     }
                 });
                 if (!flag || nxtGroup === undefined) break;
             }
             let ret;
-            if (curGroup[0]['MessageCondition'] === 'Answer') ret = this.addOptions(curGroup);
-            if (!flag) ret = this.addStory(tmp);
+            if (!special && curGroup[0]['MessageCondition'] === 'Answer') ret = this.addOptions(curGroup);
+            if (this.visited.get(id) || special || !flag) ret = this.addStory(tmp);
+            if (ret[2]) this.visited.set(ret[0], true);
             resolve(ret);
         });
     }
@@ -204,19 +230,20 @@ class PlotReader {
         let GID = group[0]['MessageGroupId'];
         container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${GID}"><div class="reply"><div class="info"><span class="status">回复</span></div><div class="selector" id="selector ${GID}"></div></div></div>`);
         let selector = document.getElementById(`selector ${GID}`);
+        let flag = parseInt(group[group.length - 1]['FavorScheduleId']) > 0;
         for (let child of group) {
-            ret = child['NextGroupId'];
+            ret = flag ? child['MessageGroupId'] : child['NextGroupId'];
             selector.insertAdjacentHTML("beforeend", `<div data-unselected class="button" id="button ${child['Id']}">${child[`Message${this.options['LANG']}`]}</div>`);
         }
         this.playState = 2;
-        return [ret, group];
+        return [ret, group, flag];
     }
 
-    addStory(group) {
+    addStory(group, flag = false) {
         let container = document.getElementById("container");
-        container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${group[group.length - 1]['FavorScheduleId']}"><div data-right class="box"><div class="story"><div class="info"><span class="stat">羁绊事件</span></div><div class="selector" id="selector ${group[0]['MessageGroupId']}"><div data-story class="button" id="button">前往妃咲的羁绊剧情</div></div></div><div class="suitable-button" id="button ${group[group.length - 1]['Id']}">继续</div></div></div></div>`);
+        container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${group[group.length - 1]['FavorScheduleId']}"><div data-right class="box"><div class="story"><div class="info"><span class="stat">羁绊事件</span></div><div class="selector" id="selector ${group[0]['MessageGroupId']}"><div data-story class="button" id="button">前往妃咲的羁绊剧情</div></div></div><div class="suitable-button ${group[group.length -1 ]['Id']}" id="button ${group[group.length - 1]['Id']}">继续</div></div></div></div>`);
         this.playState = 2;
-        return [group[group.length - 1]['NextGroupId'], group];
+        return [group[group.length - 1]['NextGroupId'], group, false];
     }
 
     cleanup(GID, oBID, nBID, force = false) {

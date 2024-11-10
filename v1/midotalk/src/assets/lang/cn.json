@@ -1,0 +1,8 @@
+{
+  "button.nextChapter": "下一幕 $s",
+  "button.prevChapter": "上一幕 $s",
+  "button.skipStory": "继续",
+  "button.gotoStory": "前往$s的羁绊剧情",
+  "label.reply": "回复",
+  "label.story": "羁绊剧情"
+}

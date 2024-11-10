@@ -2,7 +2,7 @@ import {PlotReader} from './plot-reader.cjs';
 import {queryByName} from './query.cjs';
 
 let options = {
-    SPEED: 1.0,
+    SPEED: 10,
     LANG: 'CN',
     ENTRY: 0,
 }
