@@ -1,8 +1,9 @@
 {
-  "button.nextChapter": "下一幕 $s",
-  "button.prevChapter": "上一幕 $s",
+  "button.nextChapter": "下一幕 {0}",
+  "button.prevChapter": "上一幕 {0}",
   "button.skipStory": "继续",
-  "button.gotoStory": "前往$s的羁绊剧情",
+  "button.gotoStory": "前往{0}的羁绊剧情",
   "label.reply": "回复",
-  "label.story": "羁绊剧情"
+  "label.story": "羁绊剧情",
+  "student.20039": "妃咲"
 }

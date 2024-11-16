@@ -205,3 +205,13 @@ body {
     flex-direction: row;
     margin: .5em 1em .5em 1em;
 }
+
+.image-box {
+    background-color: transparent;
+}
+
+img[data-inline] {
+    width: 10em;
+    height: auto;
+    background-color: transparent;
+}

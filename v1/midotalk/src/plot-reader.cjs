@@ -1,5 +1,6 @@
 import {Utils} from './utils.cjs';
 import $ from 'jquery';
+import {I18N} from './I18N.cjs';
 
 class PlotReader {
     path;
@@ -14,10 +15,12 @@ class PlotReader {
     nextGID;
     currentEntry;
     entry;
+    localize;
 
     constructor(path, options) {
         this.path = path;
         this.options = options;
+        this.localize = new I18N(options['LANG']);
     }
 
     async load() {
@@ -27,6 +30,7 @@ class PlotReader {
             this.mappings = new Map();
             this.groups = new Map();
             this.visited = new Map();
+            await this.localize.init();
             await $.getJSON(this.path, (data) => {
                 $.each(data, (key, info) => {
                     if (key === 'title') {
@@ -97,13 +101,11 @@ class PlotReader {
                 reject(GID);
             }
             await this.playPart(GID, flag).then(res => {
-                console.log(res);
                 this.nextGID = res === undefined ? this.entry === this.entryPoint.length - 1 ? 0 : this.entryPoint[this.entry + 1] : res[0];
                 this.playState = 2;
                 if (res !== undefined) {
                     for (let i of res[1]) {
                         if (res[2]) {
-                            console.log(i['Id']);
                             document.getElementById(`button ${i['Id']}`).addEventListener("click", () => {
                                 if (this.playState !== 1) {
                                     let oBID = this.findStateClicked(i['MessageGroupId']);
@@ -111,9 +113,8 @@ class PlotReader {
                                     let ret = this.addStory(res[1]);
                                     if (ret !== undefined) {
                                         for (let j of ret[1]) {
-                                            console.log($(`button ${j['Id']}`));
                                             document.getElementsByClassName(`suitable-button ${j['Id']}`)[0].addEventListener("click", () => {
-                                               this.resume(0, j['NextGroupId']);
+                                                this.resume(0, j['NextGroupId']);
                                             });
                                         }
                                     }
@@ -148,14 +149,14 @@ class PlotReader {
         let baseURL = window.location.origin + window.location.pathname;
         let params = new URLSearchParams(window.location.search);
         if (this.entry > 0) {
-            if (params.get('entry') !== null) params['entry'] = params['entry'] - 1;
-            else params.append('entry', this.entry - 1);
-            footer.insertAdjacentHTML("beforeend", `<div data-left class="suitable-button" onclick="window.location.href='${baseURL + '?' + params.toString()}'">上一幕 ${this.titleList[this.entry - 1][`Text${Utils.toUpperCamel(this.options['LANG'])}`]}</div>`);
+            if (params.get('entry') !== null) params.set('entry', parseInt(this.entry) - 1);
+            else params.append('entry', parseInt(this.entry) - 1);
+            footer.insertAdjacentHTML("beforeend", `<div data-left class="suitable-button" onclick="window.location.href='${baseURL + '?' + params.toString()}'">${this.localize.translate('button.prevChapter', this.titleList[this.entry - 1][`Text${Utils.toUpperCamel(this.options['LANG'])}`])}</div>`);
         }
         if (this.entry < this.entryPoint.length - 1) {
-            if (params.get('entry') !== null) params['entry'] = params['entry'] + 1;
-            else params.append('entry', this.entry + 1);
-            footer.insertAdjacentHTML("beforeend", `<div data-right class="suitable-button" onclick="window.location.href='${baseURL + '?' + params.toString()}'">下一幕 ${this.titleList[this.entry + 1][`Text${Utils.toUpperCamel(this.options['LANG'])}`]}</div>`);
+            if (params.get('entry') !== null) params.set('entry', parseInt(this.entry) + 1);
+            else params.append('entry', parseInt(this.entry) + 1);
+            footer.insertAdjacentHTML("beforeend", `<div data-right class="suitable-button" onclick="window.location.href='${baseURL + '?' + params.toString()}'">${this.localize.translate('button.nextChapter', this.titleList[this.entry + 1][`Text${Utils.toUpperCamel(this.options['LANG'])}`])}</div>`);
         }
     }
 
@@ -177,30 +178,26 @@ class PlotReader {
                 resolve(undefined);
             }
             let curGroup = this.groups.get(id);
-            console.log(curGroup);
             let nxtGroup = this.groups.get(curGroup[curGroup.length - 1]['NextGroupId']);
             let lastMID = 0;
             let flag = true;
             let tmp = special ? curGroup : undefined;
-            while (!special && curGroup[0]['MessageCondition'] !== 'Answer') {
-                console.log(special);
+            while (!special && curGroup && curGroup[0]['MessageCondition'] !== 'Answer') {
                 if (this.visited.get(id)) break;
                 if (curGroup[0]['MessageCondition'] === 'FavorRankUp' && curGroup[0]['MessageGroupId'] !== this.currentEntry) break;
                 if (parseInt(curGroup[curGroup.length - 1]['FavorScheduleId']) > 0) flag = false;
                 await this.addGroup(curGroup).then(res => {
-                    if (nxtGroup !== undefined) {
-                        if (!flag) tmp = curGroup;
-                        lastMID = res;
-                        curGroup = nxtGroup;
-                        nxtGroup = this.groups.get(curGroup[curGroup.length - 1]['NextGroupId']);
-                    }
+                    if (!flag) tmp = curGroup;
+                    lastMID = res;
+                    curGroup = nxtGroup;
+                    if (nxtGroup !== undefined) nxtGroup = this.groups.get(curGroup[curGroup.length - 1]['NextGroupId']);
                 });
-                if (!flag || nxtGroup === undefined) break;
+                if (!flag) break;
             }
             let ret;
-            if (!special && curGroup[0]['MessageCondition'] === 'Answer') ret = this.addOptions(curGroup);
+            if (!special && curGroup && curGroup[0]['MessageCondition'] === 'Answer') ret = this.addOptions(curGroup);
             if (this.visited.get(id) || special || !flag) ret = this.addStory(tmp);
-            if (ret[2]) this.visited.set(ret[0], true);
+            if (ret && ret[2]) this.visited.set(ret[0], true);
             resolve(ret);
         });
     }
@@ -210,14 +207,21 @@ class PlotReader {
             let container = document.getElementById("container");
             let ret = 0;
             let GID = group[0]['MessageGroupId'];
-            container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${GID}"><img class="avatar" src="./assets/20039/20039.webp" alt="1"><div class="box" id="box ${GID}"><div data-place class="student group">妃咲</div></div></div>`);
+            let CHID = group[0]['CharacterId'];
+            let labelStr = this.localize.translate(`student.${group[0]['CharacterId']}`);
+            container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${GID}"><img class="avatar" src="./assets/${CHID}/${CHID}.webp" alt="1"><div class="box" id="box ${GID}"><div data-place class="student group">${labelStr}</div></div></div>`);
             for (let child of group) {
                 ret = child['Id'];
                 let box = document.getElementById(`box ${GID}`);
                 box.insertAdjacentHTML("beforeend", `<div data-round class="message group textbox"><span class="text" id="${child['Id']}">……</span></div>`);
                 await Utils.sleep(child['FeedbackTimeMillisec'] * (1.0 / parseFloat(this.options['SPEED'])));
                 let inner = document.getElementById(`${child['Id']}`);
-                inner.innerHTML = `${child[`Message${this.options['LANG']}`]}`;
+                if (child['MessageType'] === 'Text') inner.innerHTML = `${child[`Message${this.options['LANG']}`]}`;
+                else if (child['MessageType'] === 'Image') {
+                    let img = child['ImagePath'].substring(child['ImagePath'].lastIndexOf('/') + 1);
+                    inner.innerHTML = "";
+                    inner.insertAdjacentHTML("beforeend", `<div class="image-box"><img data-inline alt="Momotalk showcase" src="./assets/${CHID}/${img}.png"</div>`)
+                }
                 await Utils.sleep(100);
             }
             resolve(ret);
@@ -228,7 +232,8 @@ class PlotReader {
         let container = document.getElementById("container");
         let ret = 0;
         let GID = group[0]['MessageGroupId'];
-        container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${GID}"><div class="reply"><div class="info"><span class="status">回复</span></div><div class="selector" id="selector ${GID}"></div></div></div>`);
+        let labelStr = this.localize.translate('label.reply');
+        container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${GID}"><div class="reply"><div class="info"><span class="status">${labelStr}</span></div><div class="selector" id="selector ${GID}"></div></div></div>`);
         let selector = document.getElementById(`selector ${GID}`);
         let flag = parseInt(group[group.length - 1]['FavorScheduleId']) > 0;
         for (let child of group) {
@@ -241,7 +246,10 @@ class PlotReader {
 
     addStory(group, flag = false) {
         let container = document.getElementById("container");
-        container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${group[group.length - 1]['FavorScheduleId']}"><div data-right class="box"><div class="story"><div class="info"><span class="stat">羁绊事件</span></div><div class="selector" id="selector ${group[0]['MessageGroupId']}"><div data-story class="button" id="button">前往妃咲的羁绊剧情</div></div></div><div class="suitable-button ${group[group.length -1 ]['Id']}" id="button ${group[group.length - 1]['Id']}">继续</div></div></div></div>`);
+        let labelStr = this.localize.translate('button.gotoStory', this.localize.translate(`student.${group[0]['CharacterId']}`));
+        let labelStr1 = this.localize.translate('label.story');
+        let labelStr2 = this.localize.translate('button.skipStory');
+        container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${group[group.length - 1]['FavorScheduleId']}"><div data-right class="box"><div class="story"><div class="info"><span class="stat">${labelStr1}</span></div><div class="selector" id="selector ${group[0]['MessageGroupId']}"><div data-story class="button" id="button">${labelStr}</div></div></div><div class="suitable-button ${group[group.length - 1]['Id']}" id="button ${group[group.length - 1]['Id']}">${labelStr2}</div></div></div></div>`);
         this.playState = 2;
         return [group[group.length - 1]['NextGroupId'], group, false];
     }
@@ -249,6 +257,7 @@ class PlotReader {
     cleanup(GID, oBID, nBID, force = false) {
         if (oBID === nBID) return false;
         if (oBID === -1) return true;
+        if (!this.groups.get(GID)[0]['unsure']) return false;
         if (force || this.mappings.get(oBID)['NextGroupId'] !== this.mappings.get(nBID)['NextGroupId']) {
             let cur = document.getElementById(`unit ${GID}`);
             while (true) {
