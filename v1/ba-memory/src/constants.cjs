@@ -144,7 +144,7 @@ const CharacterTag = {
     HARE_CAMP: {user: "hare_camp", name: "CH0233"},
     KOTAMA: {user: "kotama", name: "Kotama"},
     KOTAMA_CAMP: {user: "kotama_camp", name: "CH0232"},
-    // Cleaning & Clearing
+    // Cleaning & Clearing C&C
     NERU: {user: "neru", name: "Neru"},
     NERU_BUNNY: {user: "neru_bunny", name: "CH0101"},
     ASUNA: {user: "asuna", name: "Asuna"},
