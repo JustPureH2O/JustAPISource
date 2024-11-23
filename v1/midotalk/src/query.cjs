@@ -1,5 +1,6 @@
 const CharacterTag = {
     // ----------------- Abydos ---------------------- 阿拜多斯
+    SHIROKO: {user: "shiroko", id: },
     // ----------------- Gehenna --------------------- 格赫娜
     // Handyman 68 便利店68
     // School Lunch Club 供给部

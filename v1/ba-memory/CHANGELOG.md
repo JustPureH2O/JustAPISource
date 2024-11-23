@@ -1,3 +1,8 @@
+## Update log on Nov.23, 2024
+
+1. Append Chiaki (CH0238_home) and Satsuki (CH0080_home) memory lobbies.
+2. Inserted a Seia joke.
+
 ## Update log on Oct.26, 2024
 
 1. Change code style from CommonJS standard to ES6 standard. Simplify package dependencies. The bundle file is compiled through `esbuild` currently.

@@ -68,6 +68,8 @@ const CharacterTag = {
     MAKOTO: {user: "makoto", name: "CH0079"},
     IROHA: {user: "iroha", name: "CH0156"},
     IBUKI: {user: "ibuki", name: "Ibuki"},
+    CHIAKI: {user: "chiaki", name: "CH0238", V4: true}, // IMPL Implemented on 2024/11/20
+    SATSUKI: {user: "satsuki", name: "CH0080", V4: true}, // IMPL Implemented on 2024/11/20
     // Hot Spring Development Department 温泉开发部
     KASUMI: {user: "kasumi", name: "CH0089"},
     MEGU: {user: "megu", name: "CH0088"},
