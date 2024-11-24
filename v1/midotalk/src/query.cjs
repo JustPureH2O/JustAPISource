@@ -1,6 +1,19 @@
 const CharacterTag = {
     // ----------------- Abydos ---------------------- 阿拜多斯
-    SHIROKO: {user: "shiroko", id: },
+    SHIROKO: {user: "shiroko", id: 10010},
+    SHIROKO_RIDINGSUIT: {user: "shiroko_ridingsuit", id: 10024},
+    SHIROKO_SWIMSUIT: {user: "shiroko_swimsuit", id: 20027},
+    SHIROKO_TERROR: {user: "shiroko_terror", id: 10100},
+    HOSHINO: {user: "hoshino", id: 10005},
+    HOSHINO_SWIMSUIT: {user: "hoshino_swimsuit", id: 10045},
+    HOSHINO_ARMED: {user: "hoshino_armed", id: 10098},
+    NONOMI: {user: "nonomi", id: 13004},
+    NONOMI_SWIMSUIT: {user: "nonomi_swimsuit", id: 10044},
+    AYANE: {user: "ayane", id: 23005},
+    AYANE_SWIMSUIT: {user: "ayane_swimsuit", id: 26007},
+    SERIKA: {user: "serika", id: 13008},
+    SERIKA_NEWYEAR: {user: "serika_newyear", id: 20011},
+    SERIKA_SWIMSUIT: {user: "serika_swimsuit", id: 20036},
     // ----------------- Gehenna --------------------- 格赫娜
     // Handyman 68 便利店68
     // School Lunch Club 供给部

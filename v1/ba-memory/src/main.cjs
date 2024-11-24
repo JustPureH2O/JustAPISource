@@ -7,10 +7,10 @@ if (param.get('appreciation') === null) {
     info.innerHTML = `Powered by <i>BA Memory</i> by <b>JustPure<span style="color:#0080C0">H</span><sub style="color:#FF9800">2</sub><span style="color:#0080C0">O</span></b></footer>`;
 }
 let src = './assets/Azusa_home/Azusa_home.skel';
-let [tmp, V4] = Query.queryByName(param.get('name'));
-if (tmp !== undefined) src = tmp;
+let ret = Query.queryByName(param.get('name'));
+if (ret && ret[0] !== undefined) src = ret[0];
 let Canvas;
-if (V4) import("./player.cjs").then(Player => {
+if (ret && ret[1] === true) import("./player.cjs").then(Player => {
     Canvas = new Player.Player(param, src);
     Canvas.play().then(() => console.log(`Successfully Loaded: ${src}`));
 });

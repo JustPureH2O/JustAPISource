@@ -113,6 +113,7 @@ class PlotReader {
                                     let ret = this.addStory(res[1]);
                                     if (ret !== undefined) {
                                         for (let j of ret[1]) {
+                                            if (!document.getElementsByClassName(`suitable-button ${j['Id']}`).length) continue;
                                             document.getElementsByClassName(`suitable-button ${j['Id']}`)[0].addEventListener("click", () => {
                                                 this.resume(0, j['NextGroupId']);
                                             });
@@ -121,6 +122,7 @@ class PlotReader {
                                 }
                             });
                         } else {
+                            if (document.getElementById(`button ${i['Id']}`) === null) continue;
                             document.getElementById(`button ${i['Id']}`).addEventListener("click", () => {
                                 if (this.playState !== 1) {
                                     let oBID = this.findStateClicked(i['MessageGroupId']);
@@ -163,6 +165,7 @@ class PlotReader {
     findStateClicked(GID) {
         let ret = -1;
         for (let child of this.groups.get(GID)) {
+            if (document.getElementById(`button ${child['Id']}`) === null) continue;
             if (document.getElementById(`button ${child['Id']}`).hasAttribute('data-selected')) {
                 ret = child['Id'];
                 break;
@@ -174,31 +177,33 @@ class PlotReader {
     async playPart(id, special) {
         this.playState = 1;
         return new Promise(async resolve => {
-            if (this.entry < this.entryPoint.length - 1 && id >= this.entryPoint[this.entry + 1]['MessageGroupId']) {
-                resolve(undefined);
+            if (this.entry < this.entryPoint.length - 1 && id >= this.entryPoint[this.entry + 1]['MessageGroupId']) resolve(undefined);
+            if (!this.groups.has(id)) resolve(undefined);
+
+            if (this.groups.has(id)) {
+                let curGroup = this.groups.get(id);
+                let nxtGroup = this.groups.get(curGroup[curGroup.length - 1]['NextGroupId']);
+                let lastMID = 0;
+                let flag = true;
+                let tmp = special ? curGroup : undefined;
+                while (!special && curGroup && curGroup[0]['MessageCondition'] !== 'Answer') {
+                    if (this.visited.get(id)) break;
+                    if (curGroup[0]['MessageCondition'] === 'FavorRankUp' && curGroup[0]['MessageGroupId'] !== this.currentEntry) break;
+                    if (parseInt(curGroup[curGroup.length - 1]['FavorScheduleId']) > 0) flag = false;
+                    await this.addGroup(curGroup).then(res => {
+                        if (!flag) tmp = curGroup;
+                        lastMID = res;
+                        curGroup = nxtGroup;
+                        if (nxtGroup !== undefined) nxtGroup = this.groups.get(curGroup[curGroup.length - 1]['NextGroupId']);
+                    });
+                    if (!flag) break;
+                }
+                let ret;
+                if (!special && curGroup && curGroup[0]['MessageCondition'] === 'Answer') ret = this.addOptions(curGroup);
+                if (this.visited.get(id) || special || !flag) ret = this.addStory(tmp);
+                if (ret && ret[2]) this.visited.set(ret[0], true);
+                resolve(ret);
             }
-            let curGroup = this.groups.get(id);
-            let nxtGroup = this.groups.get(curGroup[curGroup.length - 1]['NextGroupId']);
-            let lastMID = 0;
-            let flag = true;
-            let tmp = special ? curGroup : undefined;
-            while (!special && curGroup && curGroup[0]['MessageCondition'] !== 'Answer') {
-                if (this.visited.get(id)) break;
-                if (curGroup[0]['MessageCondition'] === 'FavorRankUp' && curGroup[0]['MessageGroupId'] !== this.currentEntry) break;
-                if (parseInt(curGroup[curGroup.length - 1]['FavorScheduleId']) > 0) flag = false;
-                await this.addGroup(curGroup).then(res => {
-                    if (!flag) tmp = curGroup;
-                    lastMID = res;
-                    curGroup = nxtGroup;
-                    if (nxtGroup !== undefined) nxtGroup = this.groups.get(curGroup[curGroup.length - 1]['NextGroupId']);
-                });
-                if (!flag) break;
-            }
-            let ret;
-            if (!special && curGroup && curGroup[0]['MessageCondition'] === 'Answer') ret = this.addOptions(curGroup);
-            if (this.visited.get(id) || special || !flag) ret = this.addStory(tmp);
-            if (ret && ret[2]) this.visited.set(ret[0], true);
-            resolve(ret);
         });
     }
 
@@ -255,15 +260,14 @@ class PlotReader {
     }
 
     cleanup(GID, oBID, nBID, force = false) {
+        console.log(oBID, nBID);
         if (oBID === nBID) return false;
         if (oBID === -1) return true;
-        if (!this.groups.get(GID)[0]['unsure']) return false;
-        if (force || this.mappings.get(oBID)['NextGroupId'] !== this.mappings.get(nBID)['NextGroupId']) {
-            let cur = document.getElementById(`unit ${GID}`);
-            while (true) {
-                if (cur.nextElementSibling === null) break;
-                cur.nextElementSibling.remove();
-            }
+        if (!this.groups.get(GID)[0]['unsure'] && this.mappings.get(oBID)['NextGroupId'] === this.mappings.get(nBID)['NextGroupId']) return false;
+        let cur = document.getElementById(`unit ${GID}`);
+        while (true) {
+            if (cur.nextElementSibling === null) break;
+            cur.nextElementSibling.remove();
         }
         return true;
     }
