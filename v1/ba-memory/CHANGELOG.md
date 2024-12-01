@@ -1,3 +1,7 @@
+## Update log on Dec.1, 2024
+
+1. Append Shiroko_BD (LobbyShiroko_multi), Hoshino_BD (LobbyHoshino_multi), Nonomi_BD (LobbyNonomi_multi), Serika_BD (LobbySerika_multi) memory lobbies.
+
 ## Update log on Nov.23, 2024
 
 1. Append Chiaki (CH0238_home) and Satsuki (CH0080_home) memory lobbies.

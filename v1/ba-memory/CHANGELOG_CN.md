@@ -1,3 +1,7 @@
+## 2024.12.01 更新
+
+1. 加入砂狼白子特典 (shiroko_bd/LobbyShiroko_multi)、小鸟游星野特典 (hoshino_bd/LobbyHoshino_multi)、十六夜野宫特典 (nonomi_bd/LobbyNonomi_multi)、黑见芹香特典 (serika_bd/LobbySerika_multi) 的会议大厅模型。
+
 ## 2024.11.23 更新
 
 1. 加入元宫千明 (chiaki/CH0238_home) 和京极皋月 (satsuki/CH0080_home) 的回忆大厅模型。
