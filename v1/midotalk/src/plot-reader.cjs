@@ -77,7 +77,7 @@ class PlotReader {
             this.nextGID = this.entryPoint[entry]['MessageGroupId'];
             this.currentEntry = this.entryPoint[entry]['MessageGroupId'];
             this.entry = entry;
-            await this.resume().catch((GID) => this.cleanup(GID, 1, 2, true));
+            await this.resume().catch((GID) => this.cleanup(GID, 1, 2));
         });
     }
 
@@ -128,7 +128,7 @@ class PlotReader {
                                     let oBID = this.findStateClicked(i['MessageGroupId']);
                                     let stat = this.cleanup(i['MessageGroupId'], oBID, i['Id']);
                                     this.markAsClicked(i['MessageGroupId'], oBID, i['Id']);
-                                    if (stat) this.resume(0, i['NextGroupId']).catch((GID) => this.cleanup(GID, 1, 2, true));
+                                    if (stat) this.resume(0, i['NextGroupId']).catch((GID) => this.cleanup(GID, 1, 2));
                                 }
                             });
                         }
@@ -249,7 +249,7 @@ class PlotReader {
         return [ret, group, flag];
     }
 
-    addStory(group, flag = false) {
+    addStory(group) {
         let container = document.getElementById("container");
         let labelStr = this.localize.translate('button.gotoStory', this.localize.translate(`student.${group[0]['CharacterId']}`));
         let labelStr1 = this.localize.translate('label.story');
@@ -259,7 +259,7 @@ class PlotReader {
         return [group[group.length - 1]['NextGroupId'], group, false];
     }
 
-    cleanup(GID, oBID, nBID, force = false) {
+    cleanup(GID, oBID, nBID) {
         console.log(oBID, nBID);
         if (oBID === nBID) return false;
         if (oBID === -1) return true;

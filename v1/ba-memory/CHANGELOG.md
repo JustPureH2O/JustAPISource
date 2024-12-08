@@ -1,6 +1,7 @@
 ## Update log on Dec.1, 2024
 
 1. Append Shiroko_BD (LobbyShiroko_multi), Hoshino_BD (LobbyHoshino_multi), Nonomi_BD (LobbyNonomi_multi), Serika_BD (LobbySerika_multi) memory lobbies.
+2. Implemented exporting param for Live2D models.
 
 ## Update log on Nov.23, 2024
 

@@ -16,9 +16,42 @@ const CharacterTag = {
     SERIKA_SWIMSUIT: {user: "serika_swimsuit", id: 20036},
     // ----------------- Gehenna --------------------- 格赫娜
     // Handyman 68 便利店68
+    ARU: {user: "aru", id: 10000},
+    ARU_NEWYEAR: {user: "aru_newyear", id: 10031},
+    ARU_DRESS: {user: "aru_dress", id: 10089},
+    KAYOKO: {user: "kayoko", id: 13005},
+    KAYOKO_NEWYEAR: {user: "kayoko_newyear", id: 10064},
+    KAYOKO_DRESS: {user: "kayoko_dress", id: 10088},
+    MUTSUKI: {user: "mutsuki", id: 13006},
+    MUTSUKI_NEWYEAR: {user: "mutsuki_newyear", id: 10032},
+    HARUKA: {user: "haruka",id: 16000},
+    HARUKA_NEWYEAR: {user: "haruka_newyear", id: 20025},
     // School Lunch Club 供给部
+    FUUKA: {user: "fuuka", id: 23001},
+    FUUKA_NEWYEAR: {user: "fuuka_newyear", id: 20022},
+    JURI: {user: "juri", id: 26002},
     // Gourmet Research Society 美食研究会
+    JUNKO: {user: "junko",  id: 13007},
+    ZUNKO:  {user: "zunko", id: 13007},
+    JUNKO_NEWYEAR: {user: "junko_newyear", id: 16012},
+    ZUNKO_NEWYEAR: {user: "zunko_newyear", id: 16012},
+    HARUNA: {user: "haruna", id: 10002},
+    HARUNA_NEWYEAR: {user: "haruna_newyear", id: 10057},
+    HARUNA_GYM: {user: "haruna_gym", id: 20030},
+    IZUMI: {user: "izumi", id: 10009},
+    IZUMI_SWIMSUIT: {user: "izumi_swimsuit", id: 16006},
+    AKARI: {user: "akari", id: 13002},
+    AKARI_NEWYEAR: {user: "akari_newyear", id: 20034},
     // Disciplinary Committee 风纪委员会
+    HINA: {user: "hina", id: 10004},
+    HINA_SWIMSUIT: {user: "hina_swimsuit", id: 10022},
+    HINA_DRESS: {user: "hina_dress", id: 10086},
+    AKO: {user: "ako", id: 20008},
+    AKO_DRESS: {user: "ako_dress", id: 10087},
+    IORI: {user: "iori", id: 10006},
+    IORI_SWIMSUIT: {user: "iori_swimsuit", id: 10023},
+    CHINATSU: {user: "chinatsu", id: 26000},
+    CHINATSU_HOTSPRING: {user: "chinatsu_hotspring", id: 10030},
     // Pandemonium Society 万魔殿
     // Hot Spring Development Department 温泉开发部
     // Emergency Medicine Club 救急医学部
