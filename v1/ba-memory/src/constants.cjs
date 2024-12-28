@@ -142,7 +142,9 @@ const CharacterTag = {
     YUUKA: {user: "yuuka", name: "Yuuka"},
     YUUKA_GYM: {user: "yuuka_gym", name: "CH0184"},
     YUUKA_GYM_00: {user: "yuuka_gym_00", name: "CH0184_00", strict: true},
+    YUUKA_PYJAMAS: {user: "yuuka_pyjamas", name: "CH0284", V4: true}, // IMPL Implemented on 2024/12/24
     NOA: {user: "noa", name: "CH0095"},
+    NOA_PYJAMAS: {user: "noa_pyjamas", name: "CH0285", V4: true}, // IMPL Implemented on 2024/12/24
     KOYUKI: {user: "koyuki", name: "CH0198"},
     // Veritas 真理部
     CHIHIRO: {user: "chihiro", name: "CH0160"},

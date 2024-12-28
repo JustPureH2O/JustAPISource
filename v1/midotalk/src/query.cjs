@@ -52,6 +52,7 @@ const CharacterTag = {
     IORI_SWIMSUIT: {user: "iori_swimsuit", id: 10023},
     CHINATSU: {user: "chinatsu", id: 26000},
     CHINATSU_HOTSPRING: {user: "chinatsu_hotspring", id: 10030},
+
     // Pandemonium Society 万魔殿
     // Hot Spring Development Department 温泉开发部
     // Emergency Medicine Club 救急医学部

@@ -1,3 +1,7 @@
+## Update log on Dec. 28, 2024
+
+1. Append Yuuka_Pyjamas (CH0284_home) and Noa_Pyjamas (CH0285_home) memory lobbies.
+
 ## Update log on Dec.1, 2024
 
 1. Append Shiroko_BD (LobbyShiroko_multi), Hoshino_BD (LobbyHoshino_multi), Nonomi_BD (LobbyNonomi_multi), Serika_BD (LobbySerika_multi) memory lobbies.

@@ -38,7 +38,7 @@ class PlayerLegacy {
             let url = URL.createObjectURL(new Blob(stream, { type: 'video/mp4' }));
             let tmp = document.createElement('a');
             tmp.href = url;
-            tmp.download = document.title + '_ExportedByBABMemory.webm';
+            tmp.download = document.title + '_ExportedByBABMemory.mp4';
             tmp.click();
             tmp.remove();
             URL.revokeObjectURL(url);

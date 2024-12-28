@@ -1,6 +1,10 @@
+## 2024.12.28 更新
+
+1. 加入早濑优香（睡衣）(yuuka_pyjamas/CH0284_home) 和生盐诺亚 (noa_pyjamas/CH0285_home) 的回忆大厅模型。
+
 ## 2024.12.01 更新
 
-1. 加入砂狼白子特典 (shiroko_bd/LobbyShiroko_multi)、小鸟游星野特典 (hoshino_bd/LobbyHoshino_multi)、十六夜野宫特典 (nonomi_bd/LobbyNonomi_multi)、黑见芹香特典 (serika_bd/LobbySerika_multi) 的会议大厅模型。
+1. 加入砂狼白子特典 (shiroko_bd/LobbyShiroko_multi)、小鸟游星野特典 (hoshino_bd/LobbyHoshino_multi)、十六夜野宫特典 (nonomi_bd/LobbyNonomi_multi)、黑见芹香特典 (serika_bd/LobbySerika_multi) 的回忆大厅模型。
 2. 实现 Live2D 导出功能
 
 ## 2024.11.23 更新
