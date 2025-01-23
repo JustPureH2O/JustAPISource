@@ -18,3 +18,8 @@
 2. Append Mari Idol (CH0273_home), Sakurako Idol (CH0274_home), Mine Idol (CH0275_home) memory lobbies.
 3. Import latest (v4.2.33) Spine model support for the newest added lobbies. Models below version 4.2 will be loaded through legacy player.
 4. Insert a Seia joke.
+
+## Update log on Jan.23, 2025
+
+1. Append Seia memory lobby.
+2. Remove a Seia joke.

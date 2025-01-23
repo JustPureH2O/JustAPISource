@@ -86,7 +86,7 @@ const CharacterTag = {
     // Tea Party 茶话会
     MIKA: {user: "mika", name: "CH0069"},
     NAGISA: {user: "nagisa", name: "Nagisa"},
-    // TODO Insert Seia joke here
+    SEIA: {user: "seia", name: "CH0070", V4: true}, // IMPL implemented on 2025/01/20
     // Sisterhood 姐妹会
     SAKURAKO: {user: "sakurako", name: "Sakurako"},
     SAKURAKO_IDOL: {user: "sakurako_idol", name: "CH0274", V4: true}, // IMPL implemented on 2024/10/23
