@@ -146,6 +146,7 @@ const CharacterTag = {
     NOA: {user: "noa", name: "CH0095"},
     NOA_PYJAMAS: {user: "noa_pyjamas", name: "CH0285", V4: true}, // IMPL Implemented on 2024/12/24
     KOYUKI: {user: "koyuki", name: "CH0198"},
+    RIO: {user: "rio", name: "CH0158", V4: true}, // IMPL Implemented on 2025/01/27
     // Veritas 真理部
     CHIHIRO: {user: "chihiro", name: "CH0160"},
     MAKI: {user: "maki", name: "Maki"},

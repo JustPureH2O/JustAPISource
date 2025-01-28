@@ -21,5 +21,9 @@
 
 ## Update log on Jan.23, 2025
 
-1. Append Seia memory lobby.
+1. Append Seia (CH0070_home) memory lobby.
 2. Remove a Seia joke.
+
+## Update log on Jan.28, 2025
+
+1. Append Rio (CH0158_home) memory lobby.
