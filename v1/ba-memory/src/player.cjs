@@ -98,6 +98,27 @@ class Player {
         this.app.stage.addChild(this.model);
     }
 
+    wrapJSON() {
+        let data = {
+            "model": `${this.src.substring(this.src.lastIndexOf('/') + 1, this.src.lastIndexOf('.'))}`,
+            "modelSrc": `${this.src}`,
+            "modelVer": `${this.model.state.data.skeletonData.version}`,
+            "modelSize": [this.model.width, this.model.height],
+            "modelLoader": "SpineV4 Loader",
+            "animations": [],
+            "animationDuration": [],
+            "skins": []
+        };
+        for (let animation of this.model.state.data.skeletonData.animations) {
+            data.animations.push(animation.name.toLowerCase());
+            data.animationDuration.push(animation.duration);
+        }
+        for (let skin of this.model.state.data.skeletonData.skins) {
+            data.skins.push(skin.name.toLowerCase());
+        }
+        return data;
+    }
+
     async play() {
         this.cleanup();
         console.warn(`pixi-spine support for models created by Spine v4.2 or upper has yet unimplemented. spine-runtime from EsotericSoftware is used here!`);
@@ -141,7 +162,7 @@ class Player {
         addEventListener("resize", debouncer);
 
         this.isPlaying = true;
-        return this.model;
+        return this.wrapJSON();
     }
 
     cleanup() {

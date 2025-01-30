@@ -99,10 +99,30 @@ class PlayerLegacy {
         this.app.stage.addChild(this.model);
     }
 
+    wrapJSON() {
+        let data = {
+            "model": `${this.src.substring(this.src.lastIndexOf('/') + 1, this.src.lastIndexOf('.'))}`,
+            "modelSrc": `${this.src}`,
+            "modelVer": `${this.model.state.data.skeletonData.version}`,
+            "modelSize": [this.model.spineData.width, this.model.spineData.height],
+            "modelLoader": "Legacy Loader",
+            "animations": [],
+            "animationDuration": [],
+            "skins": []
+        };
+        for (let animation of this.model.state.data.skeletonData.animations) {
+            data.animations.push(animation.name.toLowerCase());
+            data.animationDuration.push(animation.duration);
+        }
+        for (let skin of this.model.state.data.skeletonData.skins) {
+            data.skins.push(skin.name.toLowerCase());
+        }
+        return data;
+    }
+
     async play() {
         this.cleanup();
         const data = await PIXI.Assets.load(this.src);
-        console.log(data)
         this.model = new Spine(data.spineData);
         console.log(`Version: ${this.model.state.data.skeletonData.version}\nWidth: ${this.model.spineData.width}\nHeight: ${this.model.spineData.height}\nWH Ratio: ${this.model.spineData.width / this.model.spineData.height}`);
         this.setup();
@@ -140,7 +160,7 @@ class PlayerLegacy {
         addEventListener("resize", debouncer);
 
         this.isPlaying = true;
-        return this.model;
+        return this.wrapJSON();
     }
 
     cleanup() {

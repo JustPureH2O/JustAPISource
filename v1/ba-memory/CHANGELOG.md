@@ -26,4 +26,10 @@
 
 ## Update log on Jan.28, 2025
 
-1. Append Rio (CH0158_home) memory lobby.
+1. Append Rio (CH0158_home), Karin Uniform (CH0282_home) memory lobbies.
+
+## Update log on Jan.30, 2025
+
+1. Update model players.
+2. Fix a typo issue.
+3. GUI interface at [here](https://api.justpureh2o.cn/v1/ba-memory/ui/)

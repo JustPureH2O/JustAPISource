@@ -12,9 +12,9 @@ if (ret && ret[0] !== undefined) src = ret[0];
 let Canvas;
 if (ret && ret[1] === true) import("./player.cjs").then(Player => {
     Canvas = new Player.Player(param, src);
-    Canvas.play().then(() => console.log(`Successfully Loaded: ${src}`));
+    Canvas.play().then((res) => {window.postMessage(JSON.stringify(res, null, 4), '*')});
 });
 else import("./player_legacy.cjs").then(PlayerLegacy => {
     Canvas = new PlayerLegacy.PlayerLegacy(param, src);
-    Canvas.play().then(() => console.log(`Successfully Loaded: ${src}`));
+    Canvas.play().then((res) => {window.postMessage(JSON.stringify(res, null, 4), '*')});
 });

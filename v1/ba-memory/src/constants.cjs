@@ -127,7 +127,7 @@ const CharacterTag = {
     SUZUMI: {user: "suzumi", name: "Suzumi"},
     // Supplementary Lessons Department 补习部
     KOHARU: {user: "koharu", name: "Koharu"},
-    KOHARU_SQWIMSUIT: {user: "koharu_swimsuit", name: "CH0205"},
+    KOHARU_SWIMSUIT: {user: "koharu_swimsuit", name: "CH0205"},
     AZUSA: {user: "azusa", name: "Azusa"},
     AZUSA_SWIMSUIT: {user: "azusa_swimsuit", name: "Azusa_swimsuit"},
     // 官方图册为 Ajitani Hifumi 而非此处的 Hihumi，为消除歧义决定添加两个不同译名
@@ -161,6 +161,7 @@ const CharacterTag = {
     ASUNA_BUNNY: {user: "asuna_bunny", name: "CH0098"},
     KARIN: {user: "karin", name: "Karin"},
     KARIN_BUNNY: {user: "karin_bunny", name: "CH0100"},
+    KARIN_UNIFORM: {user: "karin_uniform", name: "CH0100"}, // IMPL Implemented on 2025/01/20
     AKANE: {user: "akane", name: "Akane"},
     AKANE_BUNNY: {user: "akane_bunny", name: "CH0099"},
     TOKI: {user: "toki", name: "CH0187"},
