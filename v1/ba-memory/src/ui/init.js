@@ -329,7 +329,7 @@ function changeHandler(a, isAnimation = false) {
                 let frame = document.createElement('iframe');
 
                 frame.id = 'container-box';
-                frame.src = `https://api.justpureh2o.cn/v1/ba-memory/?name=${CharacterTag[ch].user}&animation=${animation.options[animation.selectedIndex].value}${repeat ? '' : '&noRepeat'}${exp ? '&export' : ''}${appreciation ? '&appreciation' : ''}`;
+                frame.src = `https://api.justpureh2o.cn/v1/ba-memory/?name=${CharacterTag[ch].user}&animation=${animation.options[animation.selectedIndex].value}${repeat ? '' : '&noRepeat=true'}${exp ? '&export' : ''}${appreciation ? '&appreciation' : ''}`;
                 client.appendChild(frame);
                 if (!isAnimation) {
                     document.querySelector('#container-box').contentWindow.addEventListener('message', (e) => {
