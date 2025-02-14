@@ -33,3 +33,8 @@
 1. Update model players.
 2. Fix a typo issue.
 3. GUI interface at [here](https://api.justpureh2o.cn/v1/ba-memory/ui/)
+
+## Update log on Feb.14, 2025
+
+1. Update UI interface.
+2. Append Maki Camp (CH0235_home) memory lobby.

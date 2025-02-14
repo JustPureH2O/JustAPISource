@@ -150,6 +150,7 @@ const CharacterTag = {
     // Veritas 真理部
     CHIHIRO: {user: "chihiro", name: "CH0160"},
     MAKI: {user: "maki", name: "Maki"},
+    MAKI_CAMP: {user: "maki_camp", name: "CH0235", V4: true}, // IMPL Implemented on 2025/02/12
     HARE: {user: "hare", name: "Hare"},
     HARE_CAMP: {user: "hare_camp", name: "CH0233"},
     KOTAMA: {user: "kotama", name: "Kotama"},
