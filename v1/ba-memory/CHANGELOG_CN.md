@@ -38,3 +38,7 @@
 
 1. 更新UI界面
 2. 加入小涂真纪（露营）(maki_camp/CH0235_home) 的回忆大厅模型
+
+## 2025.03.01 更新
+
+1. 加入冰室濑名（私服）(sena_casual/CH0082_home) 和牛牧茱莉（打工）(juri_part_timer/CH0286_home) 的回忆大厅模型

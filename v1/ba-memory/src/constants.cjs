@@ -44,6 +44,7 @@ const CharacterTag = {
     FUUKA: {user: "fuuka", name: "Fuuka"},
     FUUKA_NEWYEAR: {user: "fuuka_newyear", name: "CH0177"},
     JURI: {user: "juri", name: "Juri"},
+    JURI_PART_TIMER: {user: "juri_part_timer", name: "CH0286", V4: true}, // IMPL Implemented on 2025/02/26
     // Gourmet Research Society 美食研究会
     // 官方图册上写的是 Akashi Junko，但是模型扒下来就是 Zunko，为了消除歧义故两种标识符都添加在此
     JUNKO: {user: "junko", name: "Zunko"},
@@ -80,6 +81,7 @@ const CharacterTag = {
     MEGU: {user: "megu", name: "CH0088"},
     // Emergency Medicine Club 救急医学部
     SENA: {user: "sena", name: "CH0081"},
+    SENA_CASUAL: {user: "sena_casual", name: "CH0082", V4: true}, // IMPL Implemented on 2025/02/26
     // Sparkle Club 亮闪闪部
     KIRARA: {user: "kirara", name: "Kirara"},
     // --------------- Trinity ----------------- 圣三一

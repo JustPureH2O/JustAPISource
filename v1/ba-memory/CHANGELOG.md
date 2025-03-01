@@ -38,3 +38,7 @@
 
 1. Update UI interface.
 2. Append Maki Camp (CH0235_home) memory lobby.
+
+## Update log on Mar.1, 2025
+
+1. Append Sena Casual (CH0082_home) and Juri Part Timer (CH0286_home) memory lobbies.
