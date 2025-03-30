@@ -64,6 +64,7 @@ const CharacterTag = {
     HARUNA_GYM: {user: "haruna_gym", name: "CH0193", cn: "黑馆晴奈（体操服）"},
     IZUMI: {user: "izumi", name: "Izumi", cn: "狮子堂泉"},
     IZUMI_SWIMSUIT: {user: "izumi_swimsuit", name: "Izumi_swimsuit", cn: "狮子堂泉（泳装）"},
+    IZUMI_NEWYEAR: {user: "izumi_newyear", name: "CH0197", cn: "狮子堂泉（正月）"}, // IMPL Implemented on 2025/03/19
     AKARI: {user: "akari", name: "akari", cn: "鳄渊明里"},
     AKARI_BG: {user: "akari_bg", name: "akari_bg", strict: true},
     AKARI_SCENE: {user: "akari_scene", name: "akari_scene", strict: true}, // TODO Deprecate this
@@ -187,6 +188,8 @@ const CharacterTag = {
     KOTORI_CHEERLEADER: {user: "kotori_cheerleader", name: "CH0185", cn: "丰见小鸟（应援团）"},
     // Gym Training Department 体育锻炼部
     SUMIRE: {user: "sumire", name: "Sumire", cn: "乙花堇"},
+    SUMIRE_PART_TIMER: {user: "sumire_part_timer", name: "CH0287", cn: "乙花堇（打工）"}, // IMPL Implemented on 2025/03/26
+    REI: {user: "rei", name: "CH0245", cn: "野正丽"}, // IMPL Implemented on 2025/03/26
     // Game Development Department 游戏开发部
     MIDORI: {user: "midori", name: "Midori", cn: "才羽绿"},
     MIDORI_MAID: {user: "midori_maid", name: "CH0202", cn: "才羽绿（女仆）"},

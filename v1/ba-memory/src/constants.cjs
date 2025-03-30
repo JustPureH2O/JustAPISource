@@ -56,6 +56,7 @@ const CharacterTag = {
     HARUNA_GYM: {user: "haruna_gym", name: "CH0193"},
     IZUMI: {user: "izumi", name: "Izumi"},
     IZUMI_SWIMSUIT: {user: "izumi_swimsuit", name: "Izumi_swimsuit"},
+    IZUMI_NEWYEAR: {user: "izumi_newyear", name: "CH0197", V4: true}, // IMPL Implemented on 2025/03/19
     AKARI: {user: "akari", name: "akari"},
     AKARI_BG: {user: "akari_bg", name: "akari_bg", strict: true},
     AKARI_SCENE: {user: "akari_scene", name: "akari_scene", strict: true}, // TODO Deprecate this
@@ -182,6 +183,8 @@ const CharacterTag = {
     KOTORI_CHEERLEADER: {user: "kotori_cheerleader", name: "CH0185"},
     // Gym Training Department 体育锻炼部
     SUMIRE: {user: "sumire", name: "Sumire"},
+    SUMIRE_PART_TIMER: {user: "sumire_part_timer", name: "CH0287", V4: true}, // IMPL Implemented on 2025/03/26
+    REI: {user: "rei", name: "CH0245", V4: true}, // IMPL Implemented on 2025/03/26
     // Game Development Department 游戏开发部
     MIDORI: {user: "midori", name: "Midori"},
     MIDORI_MAID: {user: "midori_maid", name: "CH0202"},

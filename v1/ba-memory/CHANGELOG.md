@@ -42,3 +42,7 @@
 ## Update log on Mar.1, 2025
 
 1. Append Sena Casual (CH0082_home) and Juri Part Timer (CH0286_home) memory lobbies.
+
+## Update log on Mar.30, 2025
+
+1. Append Rei (CH0245_home) and Sumire Part Timer (CH0287_home) memory lobbies.
