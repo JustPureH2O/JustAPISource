@@ -16,6 +16,7 @@ class PlotReader {
     currentEntry;
     entry;
     localize;
+    remoteCharacters;
 
     constructor(path, options) {
         this.path = path;
@@ -24,24 +25,31 @@ class PlotReader {
     }
 
     async load() {
-        try {
+        //try {
             this.titleList = [];
             this.entryPoint = [];
             this.mappings = new Map();
             this.groups = new Map();
             this.visited = new Map();
+            this.remoteCharacters = new Map();
             await this.localize.init();
             await $.getJSON(this.path, (data) => {
                 $.each(data, (key, info) => {
+                    console.log(key, info);
+                    if (key === 'custom') {
+                        for (let i in info) {
+                            this.remoteCharacters.set(info[i]['CharacterId'], info[i]);
+                        }
+                    }
                     if (key === 'title') {
                         for (let i in info) {
                             this.titleList.push(info[i]);
-                            if (info[i]['TextCn'].length === 0) this.validLocalization['CN'] = false;
-                            if (info[i]['TextTw'].length === 0) this.validLocalization['TW'] = false;
-                            if (info[i]['TextEn'].length === 0) this.validLocalization['EN'] = false;
-                            if (info[i]['TextJp'].length === 0) this.validLocalization['JP'] = false;
-                            if (info[i]['TextKr'].length === 0) this.validLocalization['KR'] = false;
-                            if (info[i]['TextTh'].length === 0) this.validLocalization['TH'] = false;
+                            if (!info[i]['TextCn']) this.validLocalization['CN'] = false;
+                            if (!info[i]['TextTw']) this.validLocalization['TW'] = false;
+                            if (!info[i]['TextEn']) this.validLocalization['EN'] = false;
+                            if (!info[i]['TextJp']) this.validLocalization['JP'] = false;
+                            if (!info[i]['TextKr']) this.validLocalization['KR'] = false;
+                            if (!info[i]['TextTh']) this.validLocalization['TH'] = false;
                         }
                     }
                     if (key === 'content') {
@@ -64,12 +72,13 @@ class PlotReader {
                 console.warn(`Invalid language key or unsupported translation ${this.options['LANG']}! Switched to JP`);
                 this.options['LANG'] = 'JP';
             }
-        } catch (e) {
-            throw new Error(e);
-        }
+        //} catch (e) {
+           // console.error(e.message);
+        //}
     }
 
     play(entry) {
+        console.log(this.path, this.options);
         this.load().then(async () => {
             if (entry >= this.entryPoint.length) {
                 throw new Error(`Requesting for entrypoint #${entry} out of bound [0,${this.entryPoint.length - 1}]!`);
@@ -213,8 +222,10 @@ class PlotReader {
             let ret = 0;
             let GID = group[0]['MessageGroupId'];
             let CHID = group[0]['CharacterId'];
-            let labelStr = this.localize.translate(`student.${group[0]['CharacterId']}`);
-            container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${GID}"><img class="avatar" src="./assets/${CHID}/${CHID}.webp" alt="1"><div class="box" id="box ${GID}"><div data-place class="student group">${labelStr}</div></div></div>`);
+
+            let useRemoteCharacter = this.remoteCharacters.has(CHID);
+            let labelStr = useRemoteCharacter ? this.remoteCharacters.get(CHID)[`Text${Utils.toUpperCamel(this.options['LANG'])}`] : this.localize.translate(`student.${group[0]['CharacterId']}`);
+            container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${GID}"><img class="avatar" src="${useRemoteCharacter ? this.remoteCharacters.get(CHID)['Avatar'] : `./assets/${CHID}/${CHID}.webp`}" alt="1"><div class="box" id="box ${GID}"><div data-place class="student group">${labelStr}</div></div></div>`);
             for (let child of group) {
                 ret = child['Id'];
                 let box = document.getElementById(`box ${GID}`);
@@ -225,7 +236,7 @@ class PlotReader {
                 else if (child['MessageType'] === 'Image') {
                     let img = child['ImagePath'].substring(child['ImagePath'].lastIndexOf('/') + 1);
                     inner.innerHTML = "";
-                    inner.insertAdjacentHTML("beforeend", `<div class="image-box"><img data-inline alt="Momotalk showcase" src="./assets/${CHID}/${img}.png"</div>`)
+                    inner.insertAdjacentHTML("beforeend", `<div class="image-box"><img data-inline alt="Momotalk showcase" src="${useRemoteCharacter ? child['ImagePath'] : `./assets/${CHID}/${img}.png`}"</div>`)
                 }
                 await Utils.sleep(100);
             }
@@ -251,7 +262,9 @@ class PlotReader {
 
     addStory(group) {
         let container = document.getElementById("container");
-        let labelStr = this.localize.translate('button.gotoStory', this.localize.translate(`student.${group[0]['CharacterId']}`));
+        let CHID = group[0]['CharacterId'];
+        let useRemoteCharacter = this.remoteCharacters.has(CHID);
+        let labelStr = this.localize.translate('button.gotoStory', useRemoteCharacter ? this.remoteCharacters.get(CHID)[`Text${Utils.toUpperCamel(this.options['LANG'])}`] : this.localize.translate(`student.${CHID}`));
         let labelStr1 = this.localize.translate('label.story');
         let labelStr2 = this.localize.translate('button.skipStory');
         container.insertAdjacentHTML("beforeend", `<div class="unit" id="unit ${group[group.length - 1]['FavorScheduleId']}"><div data-right class="box"><div class="story"><div class="info"><span class="stat">${labelStr1}</span></div><div class="selector" id="selector ${group[0]['MessageGroupId']}"><div data-story class="button" id="button">${labelStr}</div></div></div><div class="suitable-button ${group[group.length - 1]['Id']}" id="button ${group[group.length - 1]['Id']}">${labelStr2}</div></div></div></div>`);
