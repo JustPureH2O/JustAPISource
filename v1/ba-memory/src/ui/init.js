@@ -288,6 +288,7 @@ const CharacterTag = {
     },
     SAORI: {user: "saori", name: "Saori", cn: "锭前纱织"},
     SAORI_SWIMSUIT: {user: "saori_swimsuit", name: "CH0266", cn: "锭前纱织（泳装）"},
+    SAORI_DRESS: {user: "saori_dress", name: "CH0259", cn: "锭前纱织（礼服）"}, // IMPL Implemented on 2025/04/09
     HIYORI: {user: "hiyori", name: "Hiyori", cn: "槌永日和"},
     HIYORI_SWIMSUIT: {user: "hiyori_swimsuit", name: "CH0269", cn: "槌永日和（泳装）"},
     HIYORI_SWIMSUIT_LIGHT_WEAKENED: {

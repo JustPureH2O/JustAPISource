@@ -46,3 +46,7 @@
 ## Update log on Mar.30, 2025
 
 1. Append Rei (CH0245_home) and Sumire Part Timer (CH0287_home) memory lobbies.
+
+## Update log on Apr.13, 2025
+
+1. Append Saori Dress (CH0259_home) memory lobby.

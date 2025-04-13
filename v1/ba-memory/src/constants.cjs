@@ -276,6 +276,7 @@ const CharacterTag = {
     ATSUKO_SWIMSUIT_LIGHT_WEAKENED: {user: "atsuko_swimsuit_home_fix", name: "CH0267_home_fix"},
     SAORI: {user: "saori", name: "Saori"},
     SAORI_SWIMSUIT: {user: "saori_swimsuit", name: "CH0266"},
+    SAORI_DRESS: {user: "saori_dress", name: "CH0259", V4: true}, // IMPL Implemented on 2025/04/09
     HIYORI: {user: "hiyori", name: "Hiyori"},
     HIYORI_SWIMSUIT: {user: "hiyori_swimsuit", name: "CH0269"},
     HIYORI_SWIMSUIT_LIGHT_WEAKENED: {user: "hiyori_swimsuit_home_fix", name: "CH0269_home_fix"},
