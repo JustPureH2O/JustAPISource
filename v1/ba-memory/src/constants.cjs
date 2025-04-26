@@ -291,6 +291,12 @@ const CharacterTag = {
     SAKI_SWIMSUIT: {user: "saki_swimsuit", name: "CH0217"},
     MOE: {user: "moe", name: "Moe"},
     MOE_SWIMSUIT: {user: "moe_swimsuit", name: "CH0216"},
+    // -------------------- Highlander ---------------------- 海兰德
+    // CCC 中央管制中心
+    HIKARI: {user: "hikari", name: "CH0242", V4: true}, // IMPL implemented on 2025/04/22
+    NOZOMI: {user: "nozomi", name: "CH0243", V4: true}, // IMPL implemented on 2025/04/22
+    // 货物输送管理部
+    AOBA: {user: "aoba", name: "CH0288", V4: true}, // IMPL implemented on 2025/04/22
     // ------------ Somewhere Outside Kivotos ------------ 联动角色
     // VOCALOID V家
     MIKU: {user: "miku", name: "CH9999"},
