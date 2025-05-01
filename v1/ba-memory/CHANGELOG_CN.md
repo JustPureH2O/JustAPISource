@@ -49,4 +49,8 @@
 
 ## 2025.04.26 更新
 
-1. 加入橘光 (hikari/CH0242_home)、橘望 (nozomi/CH0243_home)、内海青叶 (aoba/CH0288_home) 的回忆大厅模型
+1.加入橘光 (hikari/CH0242_home)、橘望 (nozomi/CH0243_home)、内海青叶 (aoba/CH0288_home) 的回忆大厅模型
+
+## 2025.05.01 更新
+
+1. 加入先前遗漏的模型

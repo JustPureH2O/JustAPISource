@@ -101,6 +101,7 @@ const CharacterTag = {
     // Justice Realization Committee 正义实现委员会
     // 小春划在了补习部下
     TSURUGI: {user: "tsurugi", name: "Tsurugi"},
+    TSURUGI_SWIMSUIT: {user: "tsurugi_swimsuit", name: "CH0060", V4: true},
     HASUMI: {user: "hasumi", name: "Hasumi"},
     HASUMI_GYM: {user: "hasumi_gym", name: "CH0190"},
     MASHIRO: {user: "mashiro", name: "Mashiro"},
@@ -161,8 +162,10 @@ const CharacterTag = {
     // Cleaning & Clearing C&C
     NERU: {user: "neru", name: "Neru"},
     NERU_BUNNY: {user: "neru_bunny", name: "CH0101"},
+    NERU_UNIFORM: {user: "neru_uniform", name: "CH0280", V4: true}, // IMPL Implemented on 2025/01/27
     ASUNA: {user: "asuna", name: "Asuna"},
     ASUNA_BUNNY: {user: "asuna_bunny", name: "CH0098"},
+    ASUNA_UNIFORM: {user: "asuna_uniform", name: "CH0281", V4: true}, // IMPL Implemented on 2025/01/20
     KARIN: {user: "karin", name: "Karin"},
     KARIN_BUNNY: {user: "karin_bunny", name: "CH0100"},
     KARIN_UNIFORM: {user: "karin_uniform", name: "CH0100"}, // IMPL Implemented on 2025/01/20

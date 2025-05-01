@@ -54,3 +54,7 @@
 ## Update log on Apr. 26, 2025
 
 1. Append Hikari (CH0242_home), Nozomi (CH0243_home) and Aoba (CH0288_home) memory lobbies.
+
+## Update log on May.1, 2025
+
+1. Add some missed models
